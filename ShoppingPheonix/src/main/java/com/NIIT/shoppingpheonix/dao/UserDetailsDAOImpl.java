@@ -58,9 +58,9 @@ public class UserDetailsDAOImpl implements UserDetailsDAO{
 		
 	}
 
-	public UserDetails get(UserDetails userdetails) {
+	public UserDetails get(String id) {
 		// TODO Auto-generated method stub
-		String id = null;
+		
 		// TODO Auto-generated method stub
 		String hql = "from Category where id="+"'"+id+"'";
 		Query query =sessionFactory.getCurrentSession().createQuery(hql);
@@ -74,7 +74,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAO{
 		}
 	}
 
-	public java.util.List<UserDetails> List(UserDetails userdetails) {
+	public java.util.List<UserDetails> list() {
 		// TODO Auto-generated method stub
 		String hql = "from category";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);

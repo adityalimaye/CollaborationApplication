@@ -1,0 +1,13 @@
+com\NIIT\shoppingpheonix\dao\CategoryDAO.class
+com\NIIT\shoppingpheonix\dao\ProductDAOImpl.class
+com\NIIT\shoppingpheonix\dao\SupplierDAOImpl.class
+com\NIIT\shoppingpheonix\dao\UserDetailsDAOImpl.class
+com\NIIT\shoppingpheonix\model\Product.class
+com\NIIT\shoppingpheonix\dao\UserDetailsDAO.class
+com\NIIT\shoppingpheonix\model\Supplier.class
+com\NIIT\shoppingpheonix\dao\CategoryDAOImpl.class
+com\NIIT\shoppingpheonix\dao\SupplierDAO.class
+com\NIIT\shoppingpheonix\config\ApplicationContextConfig.class
+com\NIIT\shoppingpheonix\dao\ProductDAO.class
+com\NIIT\shoppingpheonix\model\UserDetails.class
+com\NIIT\shoppingpheonix\model\Category.class

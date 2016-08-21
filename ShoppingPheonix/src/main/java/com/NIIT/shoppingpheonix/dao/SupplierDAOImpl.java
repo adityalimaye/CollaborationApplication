@@ -1,16 +1,13 @@
 package com.NIIT.shoppingpheonix.dao;
 
-
-import java.util.*;
+import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.NIIT.shoppingpheonix.model.Category;
 import com.NIIT.shoppingpheonix.model.Supplier;
 
 @Repository(value="supplierDAO")
@@ -60,9 +57,9 @@ public class SupplierDAOImpl  implements SupplierDAO{
 		
 	}
 
-	public Supplier get(Supplier supplier) {
+	public Supplier get(String id) {
 		// TODO Auto-generated method stub
-		String id = null;
+		
 		String hql = "from Supplier where id="+"'"+id+"'";
 		Query query =sessionFactory.getCurrentSession().createQuery(hql);
 		List<Supplier> list = query.list();
@@ -75,7 +72,7 @@ public class SupplierDAOImpl  implements SupplierDAO{
 		}
 	}
 
-	public java.util.List<Supplier> List(Supplier supplier) {
+	public java.util.List<Supplier> list() {
 		// TODO Auto-generated method stub
 		String hql = "from category";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);

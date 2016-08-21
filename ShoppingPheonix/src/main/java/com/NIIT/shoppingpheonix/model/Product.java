@@ -3,20 +3,19 @@ package com.NIIT.shoppingpheonix.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="producttab")
+@Table(name = "prod")
 @Component
-
 public class Product {
-	
+
 	@Id
-	private String id;
+	private String  id;
 	private String name;
 	private String description;
-	private int price;
-	
+	private double price;
 	public String getId() {
 		return id;
 	}
@@ -35,11 +34,12 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
+
 	
 }

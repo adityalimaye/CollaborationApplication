@@ -1,16 +1,22 @@
 package com.NIIT.shoppingpheonix.dao;
 
-import java.util.*;
+
+import java.util.List;
+
+
+import javax.transaction.Transactional;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.NIIT.shoppingpheonix.model.Category;
 
-@Repository(value="categoryDAO")
+@EnableTransactionManagement
+@Repository("categoryDAO")
 public class CategoryDAOImpl implements CategoryDAO{
 
 	@Autowired
@@ -58,27 +64,28 @@ public class CategoryDAOImpl implements CategoryDAO{
 	}
 	
 	@Transactional
-	public Category get(Category category) {
-		String id = null;
+	public java.util.List<Category> list() {
 		// TODO Auto-generated method stub
-		String hql = "from Category where id="+"'"+id+"'";
-		Query query =sessionFactory.getCurrentSession().createQuery(hql);
-		List<Category> list = query.list();
-		
-		if(list == null){
-			return null;
-		}
-		else{
-			return list.get(0);
-		}
-		
-	}
-	
-	@Transactional
-	public java.util.List<Category> List(Category category) {
-		// TODO Auto-generated method stub
-		String hql = "from category";
+		String hql = "from cat";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
+	@Transactional
+	public Category get(String id) {
+		
+		// TODO Auto-generated method stub
+		String hql = "from cat where id=" + id;
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		
+		@SuppressWarnings("unchecked")
+		List<Category> listCategory = (List<Category>) query.list();
+		
+		if (listCategory != null && !listCategory.isEmpty()) {
+			return listCategory.get(0);
+		}
+		
+		return null;
+	}
 }
+
+
