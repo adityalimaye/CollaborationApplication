@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.NIIT.shoppingpheonix.model.Category;
 
 
-@Repository
 public interface CategoryDAO {
 	//Declare all CRUD operations
 	

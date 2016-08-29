@@ -7,9 +7,12 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.NIIT.shoppingpheonix.model.UserDetails;
 
+@EnableTransactionManagement
 @Repository(value="userdetailsDAO")
 public class UserDetailsDAOImpl implements UserDetailsDAO{
 
@@ -20,6 +23,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAO{
 		this.sessionFactory = sessionFactory;
 	}
 
+	@Transactional
 	public boolean save(UserDetails userdetails) {
 		// TODO Auto-generated method stub
 		try {
@@ -31,7 +35,8 @@ public class UserDetailsDAOImpl implements UserDetailsDAO{
 			return false;
 		}
 	}
-
+	
+	@Transactional
 	public boolean update(UserDetails userdetails) {
 		// TODO Auto-generated method stub
 		try {
@@ -44,7 +49,8 @@ public class UserDetailsDAOImpl implements UserDetailsDAO{
 		}
 		
 	}
-
+	
+	@Transactional
 	public boolean delete(UserDetails userdetails) {
 		// TODO Auto-generated method stub
 		try {
@@ -57,7 +63,8 @@ public class UserDetailsDAOImpl implements UserDetailsDAO{
 		}
 		
 	}
-
+	
+	@Transactional
 	public UserDetails get(String id) {
 		// TODO Auto-generated method stub
 		

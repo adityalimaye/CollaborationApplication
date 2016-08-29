@@ -1,4 +1,4 @@
-package com.NIIT.shoppingpheonix;
+/*package com.NIIT.shoppingpheonix;
 
 import static org.junit.Assert.*;
 
@@ -34,27 +34,23 @@ public class TestCaseProduct {
 			
 			productDAO = (ProductDAO) context.getBean("productDAO");
 			
-			product = (Product) context.getBean("productDAO");
+			product = (Product) context.getBean("product");
 		}
 		
 		@Test
 		public void addProductTestCase(){
-			product.setId("MOB_002");
-			product.setName("Samsung");
-			product.setPrice(34000);
+			product.setId("MOB_005");
+			product.setName("LG");
+			product.setPrice(32000);
 			productDAO.save(product);
 			
-			assertEquals("addProductTestCase", productDAO.save(product), true);
+			assertEquals("addProductTestCase", productDAO.save(product),false);
 		}
 		
 		
 		public void deleteProductTestCase(){
-			
-			product.setId("PRD_002");
-			
-			boolean flag = productDAO.delete(product);
-			
-			assertEquals("deleteProductTestCase", flag, false);
+			assertEquals("deleteProductTestCase", productDAO.delete(product), false);
 		}
 
 }
+*/

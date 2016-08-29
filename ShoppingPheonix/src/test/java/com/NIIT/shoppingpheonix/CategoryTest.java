@@ -1,9 +1,11 @@
-package com.NIIT.shoppingpheonix;
+/*package com.NIIT.shoppingpheonix;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.NIIT.shoppingpheonix.dao.CategoryDAO;
 import com.NIIT.shoppingpheonix.model.Category;
+
+
 
 public class CategoryTest {
 
@@ -15,7 +17,7 @@ public class CategoryTest {
 		CategoryDAO categoryDAO = (CategoryDAO) context.getBean("categoryDAO");
 		
 		Category category = (Category) context.getBean("category");
-		category.setId("CG001");
+		category.setId("CG002");
 		category.setName("CGName 001");
 		category.setDescription("This is category001 description");
 		
@@ -28,4 +30,4 @@ public class CategoryTest {
 			System.out.println("Not able to create the category");
 		}
 	}
-}
+}*/

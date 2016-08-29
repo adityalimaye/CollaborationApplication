@@ -10,20 +10,23 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.NIIT.shoppingpheonix.dao.ProductDAO;
+import com.NIIT.shoppingpheonix.dao.ProductDAOImpl;
 import com.NIIT.shoppingpheonix.model.Category;
 import com.NIIT.shoppingpheonix.model.Product;
 import com.NIIT.shoppingpheonix.model.Supplier;
 import com.NIIT.shoppingpheonix.model.UserDetails;
 
 @Configuration
-@ComponentScan("com")
+@ComponentScan("com.NIIT.shoppingpheonix")
 @EnableTransactionManagement
 
 public class ApplicationContextConfig {
+	@Autowired
 	@Bean(name="dataSource1")
 	public DataSource getDataSource(){
 		DriverManagerDataSource dataSource1 = new DriverManagerDataSource();
@@ -61,6 +64,13 @@ public class ApplicationContextConfig {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 		return transactionManager;
 	}
+	
+	/*@Autowired
+	@Bean(name="productDAO")
+	public ProductDAO getProductDAO(SessionFactory sessionFactory){
+		return new ProductDAOImpl(sessionFactory);
+	}
+	*/
 	
 	
 }
