@@ -1,15 +1,18 @@
 package com.niit.shoppingmallfe.controller;
 
+import java.io.File;
 import java.util.List;
 
-
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingmall.dao.ProductMallDAO;
@@ -18,7 +21,7 @@ import com.niit.shoppingmall.model.ProductMall;
 @Controller
 public class HomeControllerMall {
 	
-	@Autowired 
+	/*@Autowired 
 	ProductMallDAO productMallDAO;
 	@Autowired
 	ProductMall productMall;
@@ -29,7 +32,7 @@ public class HomeControllerMall {
 
 	public void setProductMallDAO(ProductMallDAO productMallDAO) {
 		this.productMallDAO = productMallDAO;
-	}
+	}*/
 
 	@RequestMapping("/")
 	public ModelAndView FlyAroundTheGlobe() {
@@ -70,7 +73,7 @@ public class HomeControllerMall {
 		return mv;
 	}
 	
-	@RequestMapping("/AddProduct")
+	/*@RequestMapping("/AddProduct")
 	public ModelAndView AddProduct() {
 
 		System.out.println("Adding Product");
@@ -103,6 +106,18 @@ public class HomeControllerMall {
 	  return new ModelAndView("redirect:AddProduct");
 	 }
 	
+	
+	@RequestMapping("/Edit")
+	public ModelAndView EditProduct(@RequestParam String id,@ModelAttribute("productMall") ProductMall productMall){
+		ModelAndView mv = new ModelAndView("AddProduct");
+		List<ProductMall> productMallList = productMallDAO.getList();
+		mv.addObject("productMallList",productMallList);
+		ProductMall productMallEdit = productMallDAO.getRowById(id);
+		mv.addObject("productMallEdit",productMallEdit);
+		return mv;
+	}
+	
+	
 	@RequestMapping("/Edit")
 	 public ModelAndView editUser(@RequestParam String id,@ModelAttribute("productMall") String productMall) {
 		ModelAndView mv = new ModelAndView("AddProduct");
@@ -110,13 +125,17 @@ public class HomeControllerMall {
 		mv.addObject("productMallList",productMallList);
 		ProductMall productMallEdit = productMallDAO.getRowById(id);
 		mv.addObject("productMallEdit", productMallEdit);
-		return mv;
+		return new ModelAndView("redirect:AddProduct");
 	 }
 
 	@RequestMapping("/Update")
-	 public ModelAndView updateUser(@ModelAttribute("productMall") ProductMall productMall) {
+	 public ModelAndView updateUser(@ModelAttribute("productMall") ProductMall productMall, BindingResult result) {
+	  ModelAndView mv = new ModelAndView("AddProduct");	
+	 
+	  List<ProductMall> productMallList = (List<ProductMall>) productMallDAO.getList();
+	  mv.addObject("productMallList",productMallList);
 	  productMallDAO.updateRow(productMall);
 	  return new ModelAndView("redirect:AddProduct");
-	 }
+	 }*/
 	
 }

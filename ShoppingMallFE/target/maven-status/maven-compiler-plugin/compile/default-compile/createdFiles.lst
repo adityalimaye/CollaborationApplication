@@ -1,1 +1,7 @@
+com\niit\shoppingmallfe\controller\FileUploadController.class
+com\niit\shoppingmallfe\model\FileUpload.class
+com\niit\shoppingmallfe\controller\ProductController.class
 com\niit\shoppingmallfe\controller\HomeControllerMall.class
+com\niit\shoppingmallfe\controller\UserController.class
+com\niit\shoppingmallfe\controller\SupplierController.class
+com\niit\shoppingmallfe\controller\CategoryController.class

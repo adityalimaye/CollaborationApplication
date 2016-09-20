@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.niit.shoppingmall.model.CategoryMall;
 
 @EnableTransactionManagement
-@Repository("categoryMallDAO")
+@Repository()
 public class CategoryMallDAOImpl implements CategoryMallDAO{
 	
 	@Autowired
@@ -27,6 +27,10 @@ public class CategoryMallDAOImpl implements CategoryMallDAO{
 	{
 		this.sessionFactory = sessionFactory;
 	}
+	
+	public CategoryMallDAOImpl() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Transactional
 	public boolean save(CategoryMall categoryMall) {
@@ -34,7 +38,7 @@ public class CategoryMallDAOImpl implements CategoryMallDAO{
 			try {
 				System.out.println("Its ok form this point ");
 				// log.debug("Starting of the method save...");
-				sessionFactory.getCurrentSession().save(categoryMall);
+				sessionFactory.getCurrentSession().saveOrUpdate(categoryMall);
 				// log.debug("Starting of the method save...");
 				return true;
 			} catch (HibernateException e) {
@@ -48,7 +52,7 @@ public class CategoryMallDAOImpl implements CategoryMallDAO{
 	@Transactional
 	public List<CategoryMall> getList() {
 		// TODO Auto-generated method stub
-		String hql = "from category";
+		String hql = "from CategoryMall";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		
 		System.out.println("Method Found");

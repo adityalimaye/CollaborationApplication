@@ -2,6 +2,7 @@ package com.niit.shoppingmall.model;
 
 import javax.persistence.Entity;
 
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,6 +18,7 @@ public class ProductMall {
 	private String name;
 	private String description;
 	private double price;
+	
 	
 	public String getId() {
 		return id;

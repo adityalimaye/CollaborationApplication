@@ -35,17 +35,24 @@
 
 	<default-servlet-handler />
 
-	<!-- <beans:bean id="multipartResolver"
+	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		max upload size in bytes
-		<beans:property name="maxUploadSize" value="20971520" /> 20MB
+		<!-- max upload size in bytes -->
+		<beans:property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
 
-		max size of file in memory (in bytes)
-		<beans:property name="maxInMemorySize" value="1048576" /> 1MB
+		<!-- max size of file in memory (in bytes) -->
+		<beans:property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
 
-	</beans:bean> -->
+	</beans:bean>
 
-
+	<beans:bean
+        class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <beans:property name="exceptionMappings">
+            <beans:props>
+                <beans:prop key="java.lang.Exception">Error</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>    
 
 
 </beans:beans>

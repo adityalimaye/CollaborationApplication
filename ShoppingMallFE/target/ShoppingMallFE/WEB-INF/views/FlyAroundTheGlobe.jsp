@@ -39,11 +39,12 @@ $(function(){
     <ul class="nav navbar-nav">
       <li class="active"><a href="Home">Home</a></li>
       <li><a href="AddProduct">Add Product</a></li>
-      <li><a href="#">Page 2</a></li>
+      <li><a href="AddCategory">Add Category</a></li>
+      <li><a href="AddSupplier">Add Travel Agent's Details</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="Register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="AddUser"><span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login </a></li> 
     </ul>
   </div>
 </nav>

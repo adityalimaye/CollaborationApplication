@@ -38,7 +38,7 @@ public class ProductMallDAOImpl implements ProductMallDAO{
 		try {
 			System.out.println("Its ok from this point ");
 			// log.debug("Starting of the method save...");
-			sessionFactory.getCurrentSession().save(productMall);
+			sessionFactory.getCurrentSession().saveOrUpdate(productMall);
 			// log.debug("Starting of the method save...");
 			return true;
 		} catch (HibernateException e) {
@@ -95,19 +95,4 @@ public class ProductMallDAOImpl implements ProductMallDAO{
 		session.close();
 		return (String) ids;
 	}
-
-	/*public boolean deleteRow(ProductMall productMall) {
-		// TODO Auto-generated method stub
-		try {
-			sessionFactory.getCurrentSession().delete(productMall);
-			return true;
-		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-	}*/
-	
-	
-
 }

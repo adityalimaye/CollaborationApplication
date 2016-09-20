@@ -1,17 +1,56 @@
-  <!DOCTYPE html>
-<html >
-  <head>
-    <meta charset="UTF-8">
-    <title>Simple login form</title>
-    		<link rel="stylesheet" href="resources/css/reset.css">
-    		<link rel="stylesheet" href="resources/css/style1.css">
-    		
- </head>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-  <body>
-  
-  <div id="container_demo" >
-	<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple login form</title>
+</head>
+
+<body>
+
+	<h1>Welcome Back!</h1>
+
+	<form:form action="saveuser" modelAttribute="userDetailsMall1" enctype="multipart/form-data">
+
+		<div class="field-wrap">
+			<table>
+				<tr>
+					<td><form:label path="mailID">Email_id</form:label></td>
+					<td><form:input path="mailID"
+							value="${userDetailsMallEdit.mailID}" /></td>
+				</tr>
+
+				<tr>
+					<td><form:label path="password" type="password">Password</form:label></td>
+					<td><form:input path="password" type="password"
+							value="${userMallEdit.password}" /></td>
+				</tr>
+
+				<tr>
+					<td colspan="2"><input type="submit" value="Submit" /></td>
+				</tr>
+
+				<tr>
+					<td colspan="2"><input type="button" value="Reset" /></td>
+				</tr>
+			</table>
+		</div>
+	</form:form>
+	<a href="AddUser">Not Registered Yet?</a>
+
+
+
+
+
+
+
+	<!--  <div id="container_demo" >
+	hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4 
 	<a class="hiddenanchor" id="toregister"></a>
 	<a class="hiddenanchor" id="tologin"></a>
 	<div id="wrapper">
@@ -41,9 +80,9 @@
 		</div>
 
 	</div>
-</div>
+</div> -->
 
-    <!-- <div class="container">
+	<!-- <div class="container">
   <div class="login">
   	<h1 class="login-heading">
       <strong>Welcome.</strong> Please login.</h1>
@@ -78,7 +117,7 @@
 
 
 
-<%-- <!DOCTYPE html>
+	<%-- <!DOCTYPE html>
 <html>
 
 <head>

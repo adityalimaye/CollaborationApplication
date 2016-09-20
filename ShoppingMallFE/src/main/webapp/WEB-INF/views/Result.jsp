@@ -9,6 +9,7 @@
 </head>
 <body>
     <center>
+    	
         <h2>The file(s) was uploaded successfully!</h2>
     </center>
 </body>
