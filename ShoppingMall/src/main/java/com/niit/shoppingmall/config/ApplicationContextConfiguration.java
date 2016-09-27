@@ -2,6 +2,9 @@ package com.niit.shoppingmall.config;
 
 import java.util.Properties;
 
+
+
+
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
@@ -17,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.niit.shoppingmall.model.CategoryMall;
 import com.niit.shoppingmall.model.ProductMall;
 import com.niit.shoppingmall.model.SupplierMall;
-import com.niit.shoppingmall.model.UserDetailsMall;
+/*import com.niit.shoppingmall.model.UserDetailsMall;*/
 
 @Configuration
 @ComponentScan("com.niit.shoppingmall")
@@ -30,7 +33,7 @@ public class ApplicationContextConfiguration {
 	public DataSource getDataSource(){
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.h2.Driver");
-		dataSource.setUrl("jdbc:h2:tcp://localhost/~/NIITDB3");
+		dataSource.setUrl("jdbc:h2:tcp://localhost/~/NIITDB4");
 		dataSource.setUsername("sa");
 		dataSource.setPassword("sa");
 		return dataSource;
@@ -50,7 +53,7 @@ public class ApplicationContextConfiguration {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.addAnnotatedClass(CategoryMall.class);
-		sessionBuilder.addAnnotatedClass(UserDetailsMall.class);
+		/*sessionBuilder.addAnnotatedClass(UserDetailsMall.class);*/
 		sessionBuilder.addAnnotatedClass(SupplierMall.class);
 		sessionBuilder.addAnnotatedClasses(ProductMall.class);
 		return sessionBuilder.buildSessionFactory();

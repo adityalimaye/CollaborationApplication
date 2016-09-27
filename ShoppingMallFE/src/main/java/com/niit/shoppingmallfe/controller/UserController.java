@@ -1,4 +1,4 @@
-package com.niit.shoppingmallfe.controller;
+/*package com.niit.shoppingmallfe.controller;
 
 import java.io.File;
 import java.util.List;
@@ -110,3 +110,4 @@ public class UserController {
 	 }
 
 }
+*/

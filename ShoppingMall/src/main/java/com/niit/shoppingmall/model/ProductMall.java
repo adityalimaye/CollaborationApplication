@@ -1,8 +1,9 @@
 package com.niit.shoppingmall.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,10 +15,13 @@ import org.springframework.stereotype.Component;
 public class ProductMall {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="PROD_ID")
 	private String  id;
 	private String name;
 	private String description;
 	private double price;
+	/*private CategoryMall categoryMall;*/
 	
 	
 	public String getId() {
@@ -44,5 +48,14 @@ public class ProductMall {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	/*@ManyToOne
+	@JoinColumn(name="category_id")
+	public CategoryMall getCategoryMall() {
+		return categoryMall;
+	}
+	public void setCategoryMall(CategoryMall categoryMall) {
+		this.categoryMall = categoryMall;
+	}*/
 
 }

@@ -1,8 +1,12 @@
-package com.niit.shoppingmall.dao;
+/*package com.niit.shoppingmall.dao;
 
 import java.io.Serializable;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
+import javax.sql.DataSource;
 import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
@@ -32,6 +36,16 @@ public class UserDetailsMallDAOImpl implements UserDetailsMallDAO{
 		// TODO Auto-generated constructor stub
 	}
 	
+	DataSource dataSource;
+	
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+
 	@Transactional
 	public boolean save(UserDetailsMall userDetailsMall) {
 		// TODO Auto-generated method stub
@@ -94,5 +108,10 @@ public class UserDetailsMallDAOImpl implements UserDetailsMallDAO{
 		session.close();
 		return (String) ids;
 	}
-
 }
+		
+		
+	
+
+
+*/

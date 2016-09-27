@@ -1,5 +1,6 @@
-package com.niit.shoppingmall.dao;
+/*package com.niit.shoppingmall.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.niit.shoppingmall.model.UserDetailsMall;
@@ -13,3 +14,4 @@ public interface UserDetailsMallDAO {
 	public String deleteRow(String id);
 
 }
+*/
