@@ -80,13 +80,14 @@ button {
 			<form:form action="saveproduct" modelAttribute="productMall" enctype="multipart/form-data">
 				<table>
 					<tr>
-						<td><form:label path="id">Id</form:label></td>
 						<c:choose>
 							<c:when test="${!empty productMallEdit.id}">
+								<td><form:label path="id"> Id </form:label></td>
 								<td><form:input path="id" readonly="true" /></td>
 							</c:when>
 							<c:otherwise>
-								<td><form:input path="id" /></td>
+								<%-- <td><form:label path="id"> Id</form:label></td> --%>
+								<%-- <td><form:input path="id" /></td> --%>
 							</c:otherwise>
 						</c:choose>
 					</tr>
@@ -106,15 +107,32 @@ button {
 						<td><form:input path="price" value="${productMallEdit.price}"/></td>
 					</tr>
 					
+					 <tr>
+					 	<td><form:label path="categoryMall.id">Category Name</form:label></td>
+					 	<td><form:select path="categoryMall.id" value="${productMallEdit.categoryMall.id}">
+					 			<option value="-1">Choose a category...</option>
+									<c:forEach items="${categoryMallList}" var="categoryMall">
+										<option value="${categoryMall.id}">${categoryMall.cat_name}</option>
+						 			</c:forEach>
+						 	</form:select>
+						</td>
+								
+					</tr>	 
+						 			
 					<tr>
-						<td><form:label path="cat_id">Cat_Id</form:label></td>
-						<td><form:input path="cat_id" value="${productMallEdit.cat_id}"/></td>
-					</tr>
-					
-					<tr>
-						<td><form:label path="supp_id">Supp_Id</form:label></td>
-						<td><form:input path="supp_id" value="${productMallEdit.supp_id}"/></td>
-					</tr>
+						
+					 	
+					 	<td><form:label path="supplierMall.id">Supplier Name</form:label></td>
+					 	<td><form:select path="supplierMall.id" value="${productMallEdit.supplierMall.id}">
+					 			<option value="-1">Choose a supplier...</option>
+									<c:forEach items="${supplierMallList}" var="supplierMall">
+										<option value="${supplierMall.id}">${supplierMall.supp_name}</option>
+						 			</c:forEach>
+						 	</form:select>
+						</td> 
+								
+					</tr>	 	
+						
 					
 					<tr>
 						<td>Pick file #1:</td>
@@ -124,7 +142,7 @@ button {
 					<c:choose>
 						<c:when test="${!empty productMallEdit.id}">
 							<tr>
-								<td colspan="2"><button type="button" value="UpdateProduct">Update_Product</button></td>
+								<td colspan="2"><button type="submit" value="UpdateProduct">Update_Product</button></td>
 							</tr>
 						</c:when>
 						<c:otherwise>
@@ -162,8 +180,8 @@ button {
 								<td>Name</td>
 								<td>Description</td>
 								<td>Price</td>
-								<td>Cat_Id</td>
-								<td>Supp_Id</td>
+								<td>Category Name</td>
+								<td>Supplier Name</td>
 								<td>Edit</td>
 								<td>Delete</td>
 
@@ -181,8 +199,8 @@ button {
 									<td><c:out value="${productMall.name}" /></td>
 									<td><c:out value="${productMall.description}" /></td>
 									<td><c:out value="${productMall.price}" /></td>
-									<td><c:out value="${productMall.cat_id}" /></td>
-									<td><c:out value="${productMall.supp_id}" /></td>
+									<td><c:out value="${productMall.categoryMall.cat_name}" /></td>
+									<td><c:out value="${productMall.supplierMall.supp_name}" /></td>
 									<td><a href="Edit?id=${productMall.id}">Edit</a></td>
 									<td><a href="Delete?id=${productMall.id}">Delete</a></td>
 								</tr>

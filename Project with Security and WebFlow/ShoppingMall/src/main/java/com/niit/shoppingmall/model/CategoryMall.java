@@ -1,5 +1,6 @@
 package com.niit.shoppingmall.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,13 +33,20 @@ public class CategoryMall{
 	@Column(name="cat_description")
 	private String description;
 	
-	@OneToMany
-	@JoinColumn(name="prod_id")
-	private List<ProductMall> productMall;
+	@OneToMany(mappedBy="categoryMall")
+	private List<ProductMall> productMall = new ArrayList<ProductMall>();
 	
 	public CategoryMall() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public CategoryMall(String cat_name, String description) {
+		super();
+		this.cat_name = cat_name;
+		this.description = description;
+	}
+
+
 
 	public int getId() {
 		return id;

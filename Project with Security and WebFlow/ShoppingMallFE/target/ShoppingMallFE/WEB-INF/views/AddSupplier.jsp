@@ -76,13 +76,14 @@ button {
 			<table>
 				<tr>
 
-					<td><form:label path="id">Id</form:label></td>
+					<td><form:label path="id"><!-- Id --></form:label></td>
 					<c:choose>
 						<c:when test="${!empty supplierMallEdit.id}">
 							<td><form:input path="id" readonly="true" /></td>
 						</c:when>
 						<c:otherwise>
-							<td><form:input path="id" size="8" /></td>
+							<%-- <td><form:label path="id">Id</form:label></td> --%>
+							<%-- <td><form:input path="id" size="8" /></td> --%>
 						</c:otherwise>
 					</c:choose>
 

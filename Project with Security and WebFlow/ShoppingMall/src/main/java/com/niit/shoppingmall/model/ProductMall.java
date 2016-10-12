@@ -4,8 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
@@ -20,6 +22,7 @@ public class ProductMall {
 	@Column(name="prod_id")
 	private int id;
 	
+	
 	@Column(name="prod_name")
 	private String name;
 	
@@ -30,11 +33,19 @@ public class ProductMall {
 	@Column(name="prod_price")
 	private double price;
 	
-	@Column(name="cat_id")
+	@ManyToOne
+	@JoinColumn(name="supp_id")
+	private SupplierMall supplierMall;
+	
+	@ManyToOne
+	@JoinColumn(name="cat_id")
+	private CategoryMall categoryMall;
+	
+	/*@Column(name="cat_id")
 	private int cat_id;
 	
 	@Column(name="supp_id")
-	private int supp_id;
+	private int supp_id;*/
 	
 	/*private CategoryMall categoryMall;
 	
@@ -43,6 +54,15 @@ public class ProductMall {
 	public ProductMall() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public ProductMall(String name, String description, double price) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.price = price;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -76,7 +96,29 @@ public class ProductMall {
 		this.price = price;
 	}
 
-	public int getCat_id() {
+	public SupplierMall getSupplierMall() {
+		return supplierMall;
+	}
+
+	public void setSupplierMall(SupplierMall supplierMall) {
+		this.supplierMall = supplierMall;
+	}
+
+	public CategoryMall getCategoryMall() {
+		return categoryMall;
+	}
+
+	public void setCategoryMall(CategoryMall categoryMall) {
+		this.categoryMall = categoryMall;
+	}
+
+	
+
+	
+	
+	
+	
+	/*public int getCat_id() {
 		return cat_id;
 	}
 
@@ -90,7 +132,7 @@ public class ProductMall {
 
 	public void setSupp_id(int supp_id) {
 		this.supp_id = supp_id;
-	}
+	}*/
 
 	
 	

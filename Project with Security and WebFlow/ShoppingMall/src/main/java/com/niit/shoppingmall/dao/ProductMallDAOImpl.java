@@ -39,6 +39,7 @@ public class ProductMallDAOImpl implements ProductMallDAO{
 		
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
+			
 			System.out.println("Its ok from this point ");
 			// log.debug("Starting of the method save...");
 			session.saveOrUpdate(productMall);
@@ -68,8 +69,8 @@ public class ProductMallDAOImpl implements ProductMallDAO{
 	public ProductMall getRowById(int id) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
-		ProductMall productMallRow = (ProductMall) session.load(ProductMall.class, id);
-		return productMallRow;
+		ProductMall productMall = (ProductMall) session.load(ProductMall.class, id);
+		return productMall;
 	}
 
 	@Transactional

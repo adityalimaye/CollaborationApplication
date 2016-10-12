@@ -104,6 +104,10 @@ public class ProductController {
 		mv.addObject("productMall", new ProductMall());
 		
 		List<ProductMall> productMallList = productMallDAO.getList();
+		List<CategoryMall> categoryMallList = categoryMallDAO.getList();
+		List<SupplierMall> supplierMallList = supplierMallDAO.getList();
+		mv.addObject("supplierMallList",supplierMallList);
+		mv.addObject("categoryMallList",categoryMallList);
 		mv.addObject("productMallList",productMallList);
 		mv.addObject("AddProduct", true);
 		return mv;
@@ -120,6 +124,10 @@ public class ProductController {
 		productMallDAO.save(productMall);
 		System.out.println("Save Product Successfull");
 		List<ProductMall> productMallList = productMallDAO.getList();
+		List<CategoryMall> categoryMallList = categoryMallDAO.getList();
+		List<SupplierMall> supplierMallList = supplierMallDAO.getList();
+		mv.addObject("supplierMallList",supplierMallList);
+		mv.addObject("categoryMallList",categoryMallList);
 		mv.addObject("productMallList",productMallList);
 		
 		 System.out.println("description: " + request.getParameter("description"));
@@ -150,6 +158,10 @@ public class ProductController {
 	public ModelAndView EditProduct(@RequestParam int id,@ModelAttribute("productMall") ProductMall productMall){
 		ModelAndView mv = new ModelAndView("AddProduct");
 		List<ProductMall> productMallList = productMallDAO.getList();
+		List<CategoryMall> categoryMallList = categoryMallDAO.getList();
+		List<SupplierMall> supplierMallList = supplierMallDAO.getList();
+		mv.addObject("supplierMallList",supplierMallList);
+		mv.addObject("categoryMallList",categoryMallList);
 		mv.addObject("productMallList",productMallList);
 		ProductMall productMallEdit = productMallDAO.getRowById(id);
 		mv.addObject("productMallEdit",productMallEdit);
@@ -172,7 +184,11 @@ public class ProductController {
 	  ModelAndView mv = new ModelAndView("AddProduct");	
 	 
 	  List<ProductMall> productMallList = (List<ProductMall>) productMallDAO.getList();
-	  mv.addObject("productMallList",productMallList);
+	  List<CategoryMall> categoryMallList =(List<CategoryMall>) categoryMallDAO.getList();
+	  List<SupplierMall> supplierMallList =(List<SupplierMall>) supplierMallDAO.getList();
+		mv.addObject("supplierMallList",supplierMallList);
+		mv.addObject("categoryMallList",categoryMallList);
+	    mv.addObject("productMallList",productMallList);
 	  productMallDAO.updateRow(productMall);
 	  return new ModelAndView("redirect:AddProduct");
 	 }

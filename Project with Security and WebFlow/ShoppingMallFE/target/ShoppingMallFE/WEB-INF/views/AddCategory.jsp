@@ -81,13 +81,14 @@ button {
 			enctype="multipart/form-data">
 			<table>
 				<tr>
-					<td><form:label path="id">Id</form:label></td>
+					<td><form:label path="id"><!-- Id --></form:label></td>
 					<c:choose>
 						<c:when test="${!empty categoryMallEdit.id}">
-							<td><form:input path="id" readonly="true" /></td>
+							 <td><form:input path="id" readonly="true" /></td> 
 						</c:when>
 						<c:otherwise>
-							<td><form:input path="id" /></td>
+							<%-- <td><form:label path="id">Id</form:label></td> --%>
+							<%-- <td><form:input path="id" /></td> --%>
 						</c:otherwise>
 					</c:choose>
 				</tr>

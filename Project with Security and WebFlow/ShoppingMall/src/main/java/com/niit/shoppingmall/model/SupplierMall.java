@@ -1,5 +1,6 @@
 package com.niit.shoppingmall.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -38,13 +39,25 @@ public class SupplierMall{
 	@Column(name="supp_contact_number")
 	private String contact_number;
 	
-	@OneToMany
-	@JoinColumn(name="prod_id")
-	private List<ProductMall> productMall;
+	@OneToMany(mappedBy="supplierMall")
+	private List<ProductMall> productMall = new ArrayList<ProductMall>();
 	
 	public SupplierMall() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public SupplierMall(String supp_name, String description, String address, String email_id, String contact_number) {
+		super();
+		this.supp_name = supp_name;
+		this.description = description;
+		this.address = address;
+		this.email_id = email_id;
+		this.contact_number = contact_number;
+	}
+
+
 
 	public int getId() {
 		return id;
