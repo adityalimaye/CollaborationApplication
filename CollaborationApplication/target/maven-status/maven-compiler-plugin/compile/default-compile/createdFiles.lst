@@ -1,0 +1,7 @@
+com\niit\collaborationapplication\controller\UsersController.class
+com\niit\collaborationapplication\model\BaseDomain.class
+com\niit\collaborationapplication\model\Users.class
+com\niit\collaborationapplication\config\ApplicationContextConfiguration.class
+com\niit\collaborationapplication\dao\UsersDAOImpl.class
+com\niit\collaborationapplication\App.class
+com\niit\collaborationapplication\dao\UsersDAO.class
