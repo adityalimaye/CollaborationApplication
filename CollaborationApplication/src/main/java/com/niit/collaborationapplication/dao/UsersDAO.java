@@ -6,11 +6,12 @@ import com.niit.collaborationapplication.model.Users;
 
 
 public interface UsersDAO{
+	/*public Users makeAdmin(Users users);*/
 	public List<Users> getList();
 	public Users getRowById(String user_id);
-	public String save(Users users);
-	public String updateRow(Users users);
-	public String deleteRow(String user_id);
+	public boolean save(Users users);
+	public boolean updateRow(Users users);
+	public boolean deleteRow(String user_id);
 	public Users authenticate(String user_id,String password);
 	
 }

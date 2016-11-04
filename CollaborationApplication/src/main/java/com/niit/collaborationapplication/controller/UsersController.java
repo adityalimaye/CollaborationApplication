@@ -3,6 +3,7 @@ package com.niit.collaborationapplication.controller;
 import java.util.List;
 
 
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -30,6 +31,25 @@ public class UsersController {
 	@Autowired
 	UsersDAO usersDAO;
 	
+	/*	http://localhost:8080/CollaborationApplication/users/makeAdmin/aditya123	*/
+	@RequestMapping(value="/users/makeAdmin/{user_id}", method = RequestMethod.POST)
+	public ResponseEntity<Users> makeAdmin(@PathVariable("user_id") String empID){
+		users = usersDAO.getRowById(empID);
+		
+		if(users == null){
+			users = new Users();
+			users.setErrorCode("404");
+			users.setErrorMessage("Employee does not exist");
+			return new ResponseEntity<Users>(users, HttpStatus.NOT_FOUND);
+		}
+		
+		String role = "{Employee,Admin}";
+		
+		users.setUser_role(role);
+		usersDAO.updateRow(users);
+		
+		return new ResponseEntity<Users>(users,HttpStatus.NOT_FOUND);
+	}
 	
 	/*	http://localhost:8080/CollaborationApplication/users	*/
 	@RequestMapping(value="/users", method = RequestMethod.GET)
@@ -46,8 +66,8 @@ public class UsersController {
 	@RequestMapping(value="/users/{user_id}", method = RequestMethod.GET)
 	public ResponseEntity<Users> getUserById(@PathVariable("user_id")String user_id){
 		logger.debug("->->->-> Calling method getUserById");
-		Users users = usersDAO.getRowById(user_id);
 		
+		Users users = usersDAO.getRowById(user_id);
 		if(users == null){
 			logger.debug("->->->-> User with id{} not found"+user_id);
 			return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
@@ -55,24 +75,20 @@ public class UsersController {
 		return new ResponseEntity<Users>(users,HttpStatus.OK);
 	}
 	
-	/*	http://localhost:8080/CollaborationApplication/users/	*/	
-	/*@RequestMapping(value="/users/", method = RequestMethod.POST)
-	public ResponseEntity<Users> createUsers(@RequestBody Users users){
-		logger.debug("->->->-> calling method createUser");
-		if(usersDAO.getRowById(users.getUser_id())== null){
-			usersDAO.save(users);
-			return new ResponseEntity<Users>(users,HttpStatus.OK);
-		}
-		logger.debug("User already exist with this id!" +users.getUser_id());
-		//users.setErrorMessage("User already exist with this id:" +users.getUser_id());
-		return new ResponseEntity<Users>(users,HttpStatus.OK);
-	}*/
-	
+	/*	http://localhost:8080/CollaborationApplication/users/	*/
 	@RequestMapping(value="/users/", method = RequestMethod.POST)
 	public ResponseEntity<Users> createUsers(@RequestBody Users users){
 		logger.debug("->->->-> calling method createUser");
+		if(usersDAO.getRowById(users.getUser_id())==null){
+					
 			usersDAO.save(users);
 			return new ResponseEntity<Users>(users,HttpStatus.OK);
+		}
+			
+		logger.debug("User already exist with this id!" +users.getUser_id());
+		users.setErrorMessage("User already exist with this id:" +users.getUser_id());
+		return new ResponseEntity<Users>(users,HttpStatus.OK);
+		
 	}
 	
 	/*	http://localhost:8080/CollaborationApplication/users/rah123	*/
@@ -91,6 +107,7 @@ public class UsersController {
 		return new ResponseEntity<Users>(users,HttpStatus.OK);
 	}
 	
+	/*	http://localhost:8080/CollaborationApplication/users/sam123	*/
 	@RequestMapping(value="/users/{user_id}",method = RequestMethod.DELETE)
 	public ResponseEntity<Users> deleteUsers(@PathVariable("user_id") String user_id){
 		logger.debug("->->->->calling method DeleteUser");
@@ -106,10 +123,11 @@ public class UsersController {
 		return new ResponseEntity<Users>(HttpStatus.OK);
 	}
 	
+	/*	http://localhost:8080/CollaborationApplication/users/authenticate	*/
 	@RequestMapping(value="/users/authenticate",method= RequestMethod.POST)
 	public ResponseEntity<Users> authenticate(@RequestBody Users users, HttpSession session){
 		logger.debug("->->->->calling method authenticate");
-		users = usersDAO.authenticate(users.getEmail_id(), users.getPassword());
+		users = usersDAO.authenticate(users.getUser_id(), users.getPassword());
 		
 		if(users==null){
 			users = new Users();

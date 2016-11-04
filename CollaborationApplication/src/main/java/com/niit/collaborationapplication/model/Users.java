@@ -1,6 +1,5 @@
 package com.niit.collaborationapplication.model;
 
-import java.io.Serializable;
 
 
 import javax.persistence.Column;
@@ -18,13 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="users")
 @Component
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Users extends BaseDomain implements Serializable{
+public class Users extends BaseDomain{
 
 
-		/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5871125583524321124L;
 
 		@NotNull
 		@NotEmpty
@@ -131,6 +126,4 @@ public class Users extends BaseDomain implements Serializable{
 		public void setUser_role(String user_role) {
 			this.user_role = user_role;
 		}
-		
-		
 }

@@ -3,6 +3,7 @@ package com.niit.collaborationapplication.config;
 import java.util.Properties;
 
 
+
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
@@ -15,8 +16,12 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.collaborationapplication.dao.JobDAO;
+import com.niit.collaborationapplication.dao.JobDAOImpl;
 import com.niit.collaborationapplication.dao.UsersDAO;
 import com.niit.collaborationapplication.dao.UsersDAOImpl;
+import com.niit.collaborationapplication.model.Job;
+import com.niit.collaborationapplication.model.JobApplication;
 import com.niit.collaborationapplication.model.Users;
 
 
@@ -52,6 +57,8 @@ public class ApplicationContextConfiguration {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.addAnnotatedClass(Users.class);
+		sessionBuilder.addAnnotatedClass(Job.class);
+		sessionBuilder.addAnnotatedClass(JobApplication.class);
 		return sessionBuilder.buildSessionFactory();
 	}
 	
@@ -67,5 +74,10 @@ public class ApplicationContextConfiguration {
     public UsersDAO getUsersDAO(SessionFactory sessionFactory) {
     	return new UsersDAOImpl(sessionFactory);
     }
-
+	
+	@Autowired
+    @Bean(name = "jobDAO")
+    public JobDAO getJobDAO(SessionFactory sessionFactory) {
+    	return new JobDAOImpl(sessionFactory);
+    }
 }

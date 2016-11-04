@@ -1,15 +1,13 @@
 package com.niit.collaborationapplication.dao;
 
-import java.io.Serializable;
-
 import java.util.List;
+
 
 import javax.transaction.Transactional;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -17,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.niit.collaborationapplication.model.Users;
 
 @EnableTransactionManagement
-@Repository
+@Repository(value="usersDAO")
 public class UsersDAOImpl implements UsersDAO{
 	
 	@Autowired 
@@ -32,85 +30,89 @@ public class UsersDAOImpl implements UsersDAO{
 		// TODO Auto-generated constructor stub
 	}
 	
+	
 	@Transactional
 	public List<Users> getList() {
 		// TODO Auto-generated method stub
-		Session session = sessionFactory.openSession(); 
+		/*Session session = sessionFactory.openSession();*/ 
 		String hql = "from Users";
-		Query query = session.createQuery(hql);
-		
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		System.out.println("Checking for list of users");
+		@SuppressWarnings("unchecked")
 		List<Users> usersList = query.list();
 		//List userDetailsMallList = query.list();
-		session.close();
+		/*session.close();*/
 		return usersList;
 	}
+
 	
 	@Transactional
 	public Users getRowById(String user_id) {
 		// TODO Auto-generated method stub
 		System.out.println("Getting User by Id...");
-		Session session = sessionFactory.openSession();
-		Users users = (Users) session.load(Users.class, user_id);
-		return users;
+		String hql = "from Users where user_id='"+user_id+"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Users> userList = query.list();
+		if(userList != null && !userList.isEmpty()){
+			return userList.get(0);
+		}
+		return null;
 	}	
 		
 	
 	@Transactional
-	public String save(Users users) {
+	public boolean save(Users users) {
 		// TODO Auto-generated method stub
 	
-			Session session = sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
-			System.out.println("Its ok from this point ");
-			session.saveOrUpdate(users);
-			tx.commit();
-			Serializable users_id = session.getIdentifier(users);
-			session.close();
-			return (String) users_id;
+			try {
+				sessionFactory.getCurrentSession().saveOrUpdate(users);
+			} catch (HibernateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+			return true;
+	}	
+			
+	
+	@Transactional
+	public boolean updateRow(Users users) {
+		// TODO Auto-generated method stub
+		try {
+			sessionFactory.getCurrentSession().update(users);
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
-	
-	
 
 	@Transactional
-	public String updateRow(Users users) {
+	public boolean deleteRow(String user_id) {
 		// TODO Auto-generated method stub
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.update(users);
-		tx.commit();
-		Serializable users_id = session.getIdentifier(users);
-		session.close();
-		return (String) users_id;
-	}
-
-	@Transactional
-	public String deleteRow(String user_id) {
-		// TODO Auto-generated method stub
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		Users users = (Users) session.load(Users.class, user_id);
-		session.delete(users);
-		System.out.println("User with id: "+user_id+" deleted successfully");
-		tx.commit();
-
-		Serializable users_ids = session.getIdentifier(users);
-		session.close();
-		return (String) users_ids;
+		try {
+			sessionFactory.getCurrentSession().delete(user_id);
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	@Transactional
 	public Users authenticate(String user_id, String password) {
 		// TODO Auto-generated method stub
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		String hql = "from Users where id = '"+user_id+"'and"+"password = '"+password+"'";
-		Query query = session.createQuery(hql);
-		
+		String hql = "from Users where id = '"+user_id+"' and password = '"+password+"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		System.out.println("User Checked for authentication");
+		@SuppressWarnings("unchecked")
 		List<Users> userAuthList = query.list();
-		session.close();
 		if(userAuthList != null && !userAuthList.isEmpty()){
 			return userAuthList.get(0);
+			
 		}
 		return null;
 	}
