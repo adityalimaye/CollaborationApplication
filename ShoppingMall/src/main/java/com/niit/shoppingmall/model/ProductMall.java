@@ -65,7 +65,7 @@ public class ProductMall {
 		this.description = description;
 		this.price = price;
 	}
-	
+
 	public MultipartFile getFileData() {
 		return fileData;
 	}

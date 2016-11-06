@@ -1,4 +1,4 @@
-package com.niit.shoppingmallfe.model;
+/*package com.niit.shoppingmallfe.model;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,3 +14,4 @@ public class FileUpload {
 	}
 
 }
+*/

@@ -20,7 +20,7 @@ public class FileUtil {
 						inputStream = filea.getInputStream();
 						outputStream = new FileOutputStream("E:/Images/"+filea.getOriginalFilename());
 						System.out.println(filea.getOriginalFilename());
-						imagepath="E:/Images/"+filea.getOriginalFilename()+".jpg";
+						imagepath="E:/Images/"+filea.getOriginalFilename();
 						int readBytes=0;
 						byte[] buffer = new byte[8192];
 						while((readBytes = inputStream.read(buffer, 0, 8192))!= -1){
@@ -35,7 +35,8 @@ public class FileUtil {
 						e.printStackTrace();
 					}
 				} 
-		}return imagepath;
+		}
+		return imagepath;
 	}	
 }				
 			/*try {

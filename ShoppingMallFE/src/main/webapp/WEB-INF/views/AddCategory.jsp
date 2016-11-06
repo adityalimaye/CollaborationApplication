@@ -59,17 +59,17 @@
 
 				<tr>
 					<td><form:label path="cat_name">NAME</form:label></td>
-					<td><form:input path="cat_name" placeholder="Enter CategoryName" value="${categoryMallEdit.cat_name}" required="true" /></td>
+					<td><form:input path="cat_name" placeholder="Enter the Name" value="${categoryMallEdit.cat_name}" required="true" /></td>
 				</tr>
 
 				<tr>
 					<td><form:label path="description">DESCRIPTION</form:label></td>
-					<td><form:input path="description" placeholder="Enter CategoryDescription" value="${categoryMallEdit.description}" required="true" /></td>
+					<td><form:input path="description" placeholder="Enter the Description" value="${categoryMallEdit.description}" required="true" /></td>
 				</tr>
 
 				<tr>
-					<td>PICK A FILE:</td>
-					<td><input type="file" name="fileUpload" size="50" /></td>
+					<td><form:label for="fileData" path="fileData">PICK A FILE :</form:label></td>
+					<td><form:input path="fileData" id="image" type="file" name="filea" /></td>
 				</tr>
 
 				<c:choose>
@@ -105,6 +105,7 @@
 							<td>ID</td>
 							<td>NAME</td>
 							<td>DESCRIPTION</td>
+							<td>IMAGE PATH</td>
 							<td>EDIT</td>
 							<td>DELETE</td>
 						</tr>
@@ -117,6 +118,7 @@
 								<td><c:out value="${categoryMall.id}" /></td>
 								<td><c:out value="${categoryMall.cat_name}" /></td>
 								<td><c:out value="${categoryMall.description}" /></td>
+								<td><c:out value="${categoryMall.imagepath}"/></td>
 								<td><a href="EditCat?id=${categoryMall.id}">Edit</a></td>
 								<td><a href="DeleteCat?id=${categoryMall.id}">Delete</a></td>
 							</tr>

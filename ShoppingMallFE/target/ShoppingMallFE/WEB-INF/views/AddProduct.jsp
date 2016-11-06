@@ -53,29 +53,29 @@
 				<tr>
 					<c:choose>
 						<c:when test="${!empty productMallEdit.id}">
-							<td><form:label path="id"> Id </form:label></td>
+							<td><form:label path="id"> ID </form:label></td>
 							<td><form:input path="id" readonly="true" /></td>
 						</c:when>
 					</c:choose>
 				</tr>
 
 				<tr>
-					<td><form:label path="name">Name</form:label></td>
-					<td><form:input path="name" value="${productMallEdit.name}" required="true" /></td>
+					<td><form:label path="name">NAME</form:label></td>
+					<td><form:input path="name" placeholder="Enter the Name" value="${productMallEdit.name}" required="true" /></td>
 				</tr>
 
 				<tr>
-					<td><form:label path="description">Description</form:label></td>
-					<td><form:input path="description" value="${productMallEdit.description}" required="true" /></td>
+					<td><form:label path="description">DESCRIPTION</form:label></td>
+					<td><form:input path="description" placeholder="Enter the Description" value="${productMallEdit.description}" required="true" /></td>
 				</tr>
 
 				<tr>
-					<td><form:label path="price">Price</form:label></td>
+					<td><form:label path="price">PRICE</form:label></td>
 					<td><form:input path="price" value="${productMallEdit.price}" required="true" /></td>
 				</tr>
 
 				<tr>
-					<td><form:label path="categoryMall.id">Category Name</form:label></td>
+					<td><form:label path="categoryMall.id">CATEGORY NAME</form:label></td>
 					<td><form:select path="categoryMall.id" value="${productMallEdit.categoryMall.id}" required="true">
 							<option value="-1">Choose a category...</option>
 							<c:forEach items="${categoryMallList}" var="categoryMall">
@@ -86,7 +86,7 @@
 				</tr>
 
 				<tr>
-					<td><form:label path="supplierMall.id">Supplier Name</form:label></td>
+					<td><form:label path="supplierMall.id">SUPPLIER NAME</form:label></td>
 					<td><form:select path="supplierMall.id" value="${productMallEdit.supplierMall.id}" required="true">
 							<option value="-1">Choose a supplier...</option>
 							<c:forEach items="${supplierMallList}" var="supplierMall">

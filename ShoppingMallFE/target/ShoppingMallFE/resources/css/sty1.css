@@ -11,6 +11,11 @@ form  {
     color: #000033; 
 }
 
+/*	Link Colors	*/
+a:link	{color:green; background-color: transparent; text-decoration: none}
+a:visited	{color:brown; background-color: transparent; text-decoration: none}
+a:hover	{color: red; background-color: transparent; text-decoration: underline}
+
 /* Full-width inputs */
 input[type=text], input[type=password] {
     width: 100%;

@@ -11,10 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
@@ -51,7 +53,12 @@ public class SupplierMall{
 	@Column(name="supp_contact_number")
 	private String contact_number;
 	
-
+	@Column(name="imagepath")
+	private String imagepath;
+	
+	@Transient
+	private MultipartFile fileData;
+	
 	@OneToMany(mappedBy="supplierMall")
 	private List<ProductMall> productMall = new ArrayList<ProductMall>();
 	
@@ -68,7 +75,21 @@ public class SupplierMall{
 		this.contact_number = contact_number;
 	}
 
+	public String getImagepath() {
+		return imagepath;
+	}
 
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
+	}
+
+	public MultipartFile getFileData() {
+		return fileData;
+	}
+
+	public void setFileData(MultipartFile fileData) {
+		this.fileData = fileData;
+	}
 
 	public int getId() {
 		return id;
@@ -85,7 +106,7 @@ public class SupplierMall{
 	public void setSupp_name(String supp_name) {
 		this.supp_name = supp_name;
 	}
-
+	
 	public String getDescription() {
 		return description;
 	}
@@ -118,73 +139,11 @@ public class SupplierMall{
 		this.contact_number = contact_number;
 	}
 
-	/*public List<ProductMall> getProductMall() {
+	public List<ProductMall> getProductMall() {
 		return productMall;
 	}
 
 	public void setProductMall(List<ProductMall> productMall) {
 		this.productMall = productMall;
-	}*/
-
-	
+	}
 }
-
-
-
-/*@Entity
-@Table(name="supplier")
-@Component
-public class SupplierMall {
-	
-	@Id
-	@Column(name="id")
-	private String id;
-	private String name;
-	private String description;
-	private double salary; 
-	private String address;
-	
-	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public double getSalary() {
-		return salary;
-	}
-
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
-
-	
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-}*/

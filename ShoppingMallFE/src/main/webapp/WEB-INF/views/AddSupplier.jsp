@@ -57,33 +57,33 @@
 				
 				<tr>
 					<td><form:label path="supp_name">NAME</form:label></td>
-					<td><form:input path="supp_name" value="${supplierMallEdit.supp_name}" required="true"/></td>
+					<td><form:input path="supp_name" placeholder="Enter the Name" value="${supplierMallEdit.supp_name}" required="true"/></td>
 				</tr>
 				
 				<tr>
 					<td><form:label path="description">DESCRIPTION</form:label></td>
-					<td><form:input path="description" value="${supplierMallEdit.description}" required="true"/></td>
+					<td><form:input path="description" placeholder="Enter the Description" value="${supplierMallEdit.description}" required="true"/></td>
 				</tr>
 
 				<tr>
 					<td><form:label path="address">ADDRESS</form:label></td>
-					<td><form:input path="address" value="${supplierMallEdit.address}" required="true"/></td>
+					<td><form:input path="address" placeholder="Enter the Address" value="${supplierMallEdit.address}" required="true"/></td>
 				</tr>
 
 				<tr>
 					<td><form:label path="email_id">EMAIL_ID</form:label></td>
-					<td><form:input path="email_id" value="${supplierMallEdit.email_id}" required="true"/></td>
+					<td><form:input path="email_id" placeholder="Enter the Email_ID" value="${supplierMallEdit.email_id}" required="true"/></td>
 				</tr>
 				
 				<tr>
 					<td><form:label path="contact_number">CONTACT NUMBER</form:label></td>
-					<td><form:input path="contact_number" value="${supplierMallEdit.contact_number}" required="true"/></td>
+					<td><form:input path="contact_number" placeholder="Enter the Contact Number" value="${supplierMallEdit.contact_number}" required="true"/></td>
 				</tr>
 				
 				<tr>
-                    <td>PICK A FILE:</td>
-                    <td><input type="file" name="fileUpload" size="50" /></td>
-                </tr>
+					<td><form:label for="fileData" path="fileData">PICK A FILE :</form:label></td>
+					<td><form:input path="fileData" id="image" type="file" name="filea" /></td>
+				</tr>
 
 				<c:choose>
 					<c:when test="${!empty supplierMallEdit.id}">
@@ -93,11 +93,7 @@
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td colspan="2"><button type="submit" value="Submit">SUBMIT</button></td>
-						</tr>
-
-						<tr>
-							<td colspan="2"><button type="button" value="Reset" onClick="this.form.reset()">RESET</button></td>
+							<td colspan="2"><button type="submit" value="Submit">SUBMIT</button> 	<button type="button" class="resetbtn" value="Reset" onClick="this.form.reset()">RESET</button></td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
@@ -114,7 +110,7 @@
 			<div class="container">
 				<!-- <div class="table-responsive"> -->
 
-				<table id="example" class="table table-responsive table-stripped table-hover" cellspacing="0" width="60%">
+				<table class="table table-responsive table-stripped table-hover" cellspacing="0" width="60%">
 					<thead>
 
 						<tr style="background-color: #595959; color: #FAEBD7; text-align: center;"height="40px">
@@ -125,6 +121,7 @@
 							<td>ADDRESS</td>
 							<td>EMAIL_ID</td>
 							<td>CONTACT_NUMBER</td>
+							<td>IMAGE PATH</td>
 							<td>EDIT</td>
 							<td>DELETE</td>
 						</tr>
@@ -141,6 +138,7 @@
 								<td><c:out value="${supplierMall.address}" /></td>
 								<td><c:out value="${supplierMall.email_id}" /></td>
 								<td><c:out value="${supplierMall.contact_number}" /></td>
+								<td><c:out value="${supplierMall.imagepath}"/></td>
 								<td><a href="EditSup?id=${supplierMall.id}">Edit</a></td>
 								<td><a href="DeleteSup?id=${supplierMall.id}">Delete</a></td>
 							</tr>

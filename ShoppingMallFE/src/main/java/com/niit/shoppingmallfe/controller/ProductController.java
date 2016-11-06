@@ -25,19 +25,6 @@ import com.niit.shoppingmallfe.util.FileUtil;
 @Controller
 public class ProductController {
 	
-	private String uploadFolderPath;
-	
-	public String getUploadFolderPath() {
-		return uploadFolderPath;
-	}
-
-	public void setUploadFolderPath(String uploadFolderPath) {
-		this.uploadFolderPath = uploadFolderPath;
-	}
-
-	@Autowired
-	FileUtil fileUtil;
-
 	@Autowired 
 	ProductMallDAO productMallDAO;
 	@Autowired
@@ -52,6 +39,9 @@ public class ProductController {
 	SupplierMallDAO supplierMallDAO;
 	@Autowired 
 	SupplierMall supplierMall;
+	
+	@Autowired
+	FileUtil fileUtil;
 	
 	public ProductMallDAO getProductMallDAO() {
 		return productMallDAO;
@@ -77,7 +67,6 @@ public class ProductController {
 		this.supplierMallDAO = supplierMallDAO;
 	}
 	
-	
 	public ProductMall getProductMall() {
 		return productMall;
 	}
@@ -101,7 +90,18 @@ public class ProductController {
 	public void setSupplierMall(SupplierMall supplierMall) {
 		this.supplierMall = supplierMall;
 	}
+	
+	private String uploadFolderPath;
+	
+	public String getUploadFolderPath() {
+		return uploadFolderPath;
+	}
 
+	public void setUploadFolderPath(String uploadFolderPath) {
+		this.uploadFolderPath = uploadFolderPath;
+	}
+
+	
 	@RequestMapping("/AddProduct")
 	public ModelAndView AddProduct() {
 

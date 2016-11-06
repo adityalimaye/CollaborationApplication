@@ -81,11 +81,6 @@
 		in the /WEB-INF/views directory -->
 	<default-servlet-handler />
 	
-	<!-- <beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-	<beans:property name="basename" value="/WEB-INF/messages" />
-	</beans:bean> -->
-	
-
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- max upload size in bytes -->
@@ -95,12 +90,6 @@
 		<beans:property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
 	</beans:bean>
 	
-	<!-- <beans:bean id="uploadDirResource" class="org.springframework.core.io.FileSystemResource">
-	<beans:constructor-arg>
-	<beans:value>E:/Images/</beans:value>
-	</beans:constructor-arg>
-	</beans:bean> -->
-
 	<beans:bean
         class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <beans:property name="exceptionMappings">

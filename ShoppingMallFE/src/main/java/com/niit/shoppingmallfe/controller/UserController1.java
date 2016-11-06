@@ -1,4 +1,4 @@
-package com.niit.shoppingmallfe.controller;
+/*package com.niit.shoppingmallfe.controller;
 
 import java.io.File;
 
@@ -92,7 +92,7 @@ public class UserController1 {
 		return mv;
 	}
 	
-	/*@RequestMapping("/DeleteUsr1")
+	@RequestMapping("/DeleteUsr1")
 	 public ModelAndView DeleteUser(@RequestParam String id) {
 	  String userDetailsMallDelete= userDetailsMallDAO.deleteRow(id);
 	  return new ModelAndView("redirect:AddUser");
@@ -118,6 +118,7 @@ public class UserController1 {
 	  mv.addObject("userDetailsMallList",userDetailsMallList);
 	  userDetailsMallDAO.updateRow(userDetailsMall);
 	  return new ModelAndView("redirect:confirmDetails");
-	 }*/
+	 }
 
 }
+*/

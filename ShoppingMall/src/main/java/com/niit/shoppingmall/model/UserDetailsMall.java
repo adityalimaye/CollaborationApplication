@@ -6,10 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
@@ -56,14 +58,17 @@ public class UserDetailsMall implements Serializable{
 	@Column(name="user_address")
 	private String user_address;
 	
+	@Column(name="imagepath")
+	private String imagepath;
+	
+	@Transient
+	private MultipartFile fileData;
+	
 	public UserDetailsMall() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	
-	public UserDetailsMall(String name, String id, String password, boolean enabled, String contact, String email_id,
-			String user_address) {
+	public UserDetailsMall(String name, String id, String password, boolean enabled, String contact, String email_id, String user_address) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -73,8 +78,22 @@ public class UserDetailsMall implements Serializable{
 		this.email_id = email_id;
 		this.user_address = user_address;
 	}
+	
+	public String getImagepath() {
+		return imagepath;
+	}
 
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
+	}
 
+	public MultipartFile getFileData() {
+		return fileData;
+	}
+
+	public void setFileData(MultipartFile fileData) {
+		this.fileData = fileData;
+	}
 
 	public String getId() {
 		return id;
@@ -100,8 +119,6 @@ public class UserDetailsMall implements Serializable{
 		this.enabled = enabled;
 	}
 	
-	
-	
 	public String getEmail_id() {
 		return email_id;
 	}
@@ -126,8 +143,6 @@ public class UserDetailsMall implements Serializable{
 		this.contact = contact;
 	}
 
-	
-
 	public String getUser_address() {
 		return user_address;
 	}
@@ -135,79 +150,4 @@ public class UserDetailsMall implements Serializable{
 	public void setUser_address(String user_address) {
 		this.user_address = user_address;
 	}
-	
-}	
-
-
-
-
-
-/*@Entity
-@Table(name="userdetails")
-@Component
-public class UserDetailsMall {
-	
-	@Id
-	@Column(name="id")
-	private String id;
-	
-	private String name;
-	@Column(name = "mail_id")
-	private String mailID;
-	
-	private String address;
-	
-	private String password;
-	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Column(name = "contact_number")
-	private String contactNumber;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getMailID() {
-		return mailID;
-	}
-
-	public void setMailID(String mailID) {
-		this.mailID = mailID;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getContactNumber() {
-		return contactNumber;
-	}
-
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-
-}*/
+}

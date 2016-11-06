@@ -1,33 +1,37 @@
 package com.niit.shoppingmallfe.controller;
 
-import java.io.File;
-
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingmall.dao.UserDetailsMallDAO;
 import com.niit.shoppingmall.model.UserDetailsMall;
+
+import com.niit.shoppingmallfe.util.FileUtil;
 
 @Controller
 public class UserController {
 	
 	@Autowired
 	UserDetailsMallDAO userDetailsMallDAO;
-	
 	@Autowired
 	UserDetailsMall userDetailsMall;
-
+	
+	@Autowired
+	FileUtil fileUtil;
+	
 	public UserDetailsMallDAO getUserDetailsMallDAO() {
 		return userDetailsMallDAO;
 	}
@@ -36,8 +40,26 @@ public class UserController {
 		this.userDetailsMallDAO = userDetailsMallDAO;
 	}
 	
-	private String saveDirectory = "E:/Images/";
+	public UserDetailsMall getUserDetailsMall() {
+		return userDetailsMall;
+	}
+
+	public void setUserDetailsMall(UserDetailsMall userDetailsMall) {
+		this.userDetailsMall = userDetailsMall;
+	}
+
+
+
+	private String uploadFolderPath;
 	
+	public String getUploadFolderPath() {
+		return uploadFolderPath;
+	}
+
+	public void setUploadFolderPath(String uploadFolderPath) {
+		this.uploadFolderPath = uploadFolderPath;
+	}
+
 	@RequestMapping("/AddUser")
 	public ModelAndView AddUser() {
 
@@ -53,10 +75,13 @@ public class UserController {
 	}	
 	
 	@RequestMapping("/saveuser")
-	public ModelAndView SaveUser(@ModelAttribute("userDetailsMall") UserDetailsMall userDetailsMall, BindingResult result, HttpServletRequest request, @RequestParam CommonsMultipartFile[] fileUpload)throws Exception {
+	public ModelAndView SaveUser(@ModelAttribute("userDetailsMall") UserDetailsMall userDetailsMall,@RequestParam("fileData") MultipartFile fileData,HttpServletRequest request, HttpServletResponse response,BindingResult result)throws Exception {
 
 		
 		ModelAndView mv = new ModelAndView("AddUser");
+		
+		uploadFolderPath = fileUtil.upload(fileData);
+		userDetailsMall.setImagepath(uploadFolderPath);
 		
 		mv.addObject("userDetailsMall", true);
 		userDetailsMallDAO.save(userDetailsMall);
@@ -64,21 +89,7 @@ public class UserController {
 		List<UserDetailsMall> userDetailsMallList = userDetailsMallDAO.getList();
 		mv.addObject("userDetailsMallList",userDetailsMallList);
 		
-		System.out.println("description: " + request.getParameter("description"));
-         
-	        if (fileUpload != null && fileUpload.length > 0) {
-	            for (CommonsMultipartFile aFile : fileUpload){
-	                 
-	                System.out.println("Saving file: " + aFile.getOriginalFilename());
-	                 
-	                if (!aFile.getOriginalFilename().equals("")) {
-	                    aFile.transferTo(new File(saveDirectory + aFile.getOriginalFilename()));
-	                }
-	            }
-	        }
-	 
-	        // returns to the view "Result"
-	    return new ModelAndView("redirect:AddUser");
+		return new ModelAndView("redirect:AddUser");
 	}
 	
 	@RequestMapping("/DeleteUsr")

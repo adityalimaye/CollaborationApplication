@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.shoppingmall.model.CategoryMall;
 import com.niit.shoppingmall.model.SupplierMall;
 
 @EnableTransactionManagement
@@ -57,7 +56,7 @@ public class SupplierMallDAOImpl implements SupplierMallDAO{
 	public SupplierMall getRowById(int id) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
-		SupplierMall supplierMall = (SupplierMall) session.load(CategoryMall.class, id);
+		SupplierMall supplierMall = (SupplierMall) session.load(SupplierMall.class, id);
 		return supplierMall;
 	}
 

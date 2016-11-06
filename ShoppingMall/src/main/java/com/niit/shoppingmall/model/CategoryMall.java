@@ -1,6 +1,7 @@
 package com.niit.shoppingmall.model;
 
 import java.util.ArrayList
+
 ;
 import java.util.List;
 
@@ -11,10 +12,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="category")
@@ -36,6 +39,11 @@ public class CategoryMall{
 	@Column(name="cat_description")
 	private String description;
 	
+	@Column(name="imagepath")
+	private String imagepath;
+	
+	@Transient
+	private MultipartFile fileData;
 	
 	@OneToMany(mappedBy="categoryMall")
 	private List<ProductMall> productMall = new ArrayList<ProductMall>();
@@ -49,8 +57,22 @@ public class CategoryMall{
 		this.cat_name = cat_name;
 		this.description = description;
 	}
+	
+	public String getImagepath() {
+		return imagepath;
+	}
 
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
+	}
 
+	public MultipartFile getFileData() {
+		return fileData;
+	}
+
+	public void setFileData(MultipartFile fileData) {
+		this.fileData = fileData;
+	}
 
 	public int getId() {
 		return id;
