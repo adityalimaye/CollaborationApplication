@@ -1,0 +1,12 @@
+com\niit\collaborationapplication\controller\JobController.class
+com\niit\collaborationapplication\controller\UsersController.class
+com\niit\collaborationapplication\model\BaseDomain.class
+com\niit\collaborationapplication\model\Users.class
+com\niit\collaborationapplication\config\ApplicationContextConfiguration.class
+com\niit\collaborationapplication\dao\JobDAOImpl.class
+com\niit\collaborationapplication\model\Job.class
+com\niit\collaborationapplication\dao\UsersDAOImpl.class
+com\niit\collaborationapplication\App.class
+com\niit\collaborationapplication\dao\JobDAO.class
+com\niit\collaborationapplication\dao\UsersDAO.class
+com\niit\collaborationapplication\model\JobApplication.class
