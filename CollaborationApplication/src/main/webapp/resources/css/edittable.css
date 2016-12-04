@@ -1,9 +1,0 @@
-@CHARSET "ISO-8859-1";
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  border: 1px solid #ddd;
-}

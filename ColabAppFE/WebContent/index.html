@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="myCoApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Collaboration Application</title>
+<!-- SCROLLS -->
+<!-- load bootstrap and fontawesome via CDN -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+<!-- SPELLS -->
+<!-- load angular via CDN -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular-route.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular-resource.js"></script>
+<script src="app.js"></script>
+<!-- <script type="text/javascript" src="co_user/RegisterService.js"></script> -->
+<script type="text/javascript" src="co_user/RegisterController.js"></script>
+<script type="text/javascript" src="co_user/LoginController.js"></script>
+</head>
+
+<!-- define angular controller -->
+<body ng-controller="mainController">
+
+<!-- HEADER AND NAVBAR -->
+	<header>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Friends Corner</a>
+				</div>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
+					<li><a href="#register"><i class="fa fa-shield"></i> SignUp!</a></li>
+					<li><a href="#login"><i class="fa fa-shield"></i>Login</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<!-- MAIN CONTENT AND INJECTED VIEWS -->
+	<div id="main">
+		
+
+		<!-- angular templating -->
+		<!-- this is where content will be injected -->
+		<div ng-view></div>
+	</div>
+</body>
+</html>
