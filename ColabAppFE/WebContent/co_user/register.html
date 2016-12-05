@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="resources/css/sty1.css">
 <body>
 
-<div class="generic-container" ng-controller="RegisterController as ctrl">
-
+<div class="generic-container" ng-controller="UserController as ctrl">
+			{{message}}
 
 		<div ng-hide='ctrl.user.errorMessage=="" '>
 			<div class="alert alert-danger fade in">Error :
@@ -19,7 +19,7 @@
 
 		<div ng-show='ctrl.user.errorMessage=="" '>
 
-			<div class="panel panel-default">
+			<div align="center" class="panel panel-default">
 				<div class="panel-heading">
 					<span class="lead">User Registration Form </span>
 				</div>
