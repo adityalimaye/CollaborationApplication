@@ -45,10 +45,10 @@
    		 console.log("$locationChangeStart")
    		 //http://localhost:8080/Collaboration/addjob
    	        // redirect to login page if not logged in and trying to access a restricted page
-   	        var restrictedPage = $.inArray($location.path(), ['//','/home.html','/','/search_job','/view_blog','/login', '/register','/list_blog']) === -1;
+   	        var restrictedPage = $.inArray($location.path(), ['//','/','/login', '/register']) === -1;
    	        
    	        console.log("restrictedPage:" +restrictedPage)
-   	        var loggedIn = $rootScope.currentUser.id;
+   	        var loggedIn = $rootScope.currentUser.user_id;
    	        
    	        console.log("loggedIn:" +loggedIn)
    	        
