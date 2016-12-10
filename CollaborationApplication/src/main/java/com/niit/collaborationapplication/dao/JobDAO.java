@@ -10,7 +10,7 @@ public interface JobDAO {
 	public boolean updateJob(Job job);
 	public List<Job> getAllVacantJobs();
 	public List<Job> getAllJobs();
-	public Job getJobDetails(Long jobID);
+	public List<Job> getJobDetails(Long jobID);
 	
 	public boolean save(JobApplication jobApplication);
 	public boolean update(JobApplication jobApplication);
@@ -18,7 +18,8 @@ public interface JobDAO {
 	public boolean updateJobApplication(JobApplication jobApplication);
 	public JobApplication get(String userID,Long jobID);
 	public JobApplication getMyAppliedJobs(String userID);
-	public JobApplication getJobApplication(String userID, Long jobID);
+	public JobApplication getJobApplication1(String userID, Long jobID);
+	public JobApplication getJobApplication(Long jobID);
 	
 
 }

@@ -58,8 +58,8 @@ public class JobController {
 	@RequestMapping(value="/getAllVacantJobs/",method = RequestMethod.GET)
 	public ResponseEntity<List<Job>> getAllVacantJobs(){
 		logger.debug("->->->->Starting of the method get all vacant jobs");
-		List<Job> jobs = jobDAO.getAllVacantJobs();
-		return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);
+		List<Job> jobs1 = jobDAO.getAllVacantJobs();
+		return new ResponseEntity<List<Job>>(jobs1,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/getMyAppliedJobs/",method = RequestMethod.GET)
@@ -67,16 +67,17 @@ public class JobController {
 		logger.debug("->->->-> Starting of the method getMyAppliedJobs");
 		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
 		
-		List<Job> jobs = (List<Job>) jobDAO.getMyAppliedJobs(loggedInUserID);
-		return new ResponseEntity<List<Job>> (jobs,HttpStatus.OK);
+		@SuppressWarnings("unchecked")
+		List<Job> jobs2 = (List<Job>) jobDAO.getMyAppliedJobs(loggedInUserID);
+		return new ResponseEntity<List<Job>> (jobs2,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/getJobDetails/{jobID}",method = RequestMethod.GET)
-	public ResponseEntity<Job> getJobDetails(@RequestParam("jobID") Long jobID)
+	public ResponseEntity<List<Job>> getJobDetails(@PathVariable("jobID") Long jobID)
 	{
 		logger.debug("->->->-> Starting of the method getJobDetails()");
-		Job job = jobDAO.getJobDetails(jobID);
-		return new ResponseEntity<Job> (job,HttpStatus.OK);
+		List<Job> jobs3 = jobDAO.getJobDetails(jobID);
+		return new ResponseEntity<List<Job>> (jobs3,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/postAJob",method = RequestMethod.POST)
@@ -95,7 +96,7 @@ public class JobController {
 	public ResponseEntity<Job>  applyForJob(@RequestParam("jobID") Long jobID,HttpSession httpSession){
 		logger.debug("Starting of the method applyForTheJob");
 		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
-		//jobApplication = jobDAO.getJobApplication(jobID);
+		jobApplication = jobDAO.getJobApplication(jobID);
 		jobApplication.setJobID(jobID);
 		jobApplication.setUserID(loggedInUserID);
 		jobApplication.setStatus('N');
@@ -110,7 +111,7 @@ public class JobController {
 	@RequestMapping(value="/selectUser/{userID}/{jobID}",method=RequestMethod.PUT)
 	public ResponseEntity<Job> selectUser(@PathVariable("userID") String userID,@PathVariable("jobID") Long jobID){
 		logger.debug("->->->-> Starting of the method selectUser");
-		jobApplication = jobDAO.getJobApplication(userID,jobID);
+		jobApplication = jobDAO.getJobApplication1(userID,jobID);
 		
 		jobApplication.setStatus('S');
 		if(jobDAO.save(jobApplication)){
@@ -124,7 +125,7 @@ public class JobController {
 	@RequestMapping(value="/canCallForInterview/{userID}/{jobID}",method=RequestMethod.PUT)
 	public ResponseEntity<Job> callForInterview(@PathVariable("userID") String userID,@PathVariable("jobID") Long jobID){
 		logger.debug("->->->-> Starting of the method canCallForInterview");
-		jobApplication = jobDAO.getJobApplication(userID, jobID);
+		jobApplication = jobDAO.getJobApplication1(userID, jobID);
 		
 		jobApplication.setStatus('C');
 		if(jobDAO.save(jobApplication)){
@@ -138,7 +139,7 @@ public class JobController {
 	@RequestMapping(value="/rejectJobApplication/{userID/{jobID}",method=RequestMethod.PUT)
 	public ResponseEntity<Job> rejectJobApplication(@PathVariable("userID") String userID,@PathVariable("jobID") Long jobID){
 		logger.debug("->->->-> Starting of the method rejectJobAppplication");
-		jobApplication = jobDAO.getJobApplication(userID, jobID);
+		jobApplication = jobDAO.getJobApplication1(userID, jobID);
 		
 		jobApplication.setStatus('R');
 		if(jobDAO.updateJobApplication(jobApplication)==false){

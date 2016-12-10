@@ -25,7 +25,7 @@ public class JobApplication {
 	private String userID;
 	
 	@NotNull
-	@Column(name="job_id")
+	@Column(name="jobID")
 	private Long jobID;
 	
 	@Column(name="date_applied")

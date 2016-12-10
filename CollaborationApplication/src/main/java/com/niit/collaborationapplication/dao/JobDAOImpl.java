@@ -41,6 +41,7 @@ public class JobDAOImpl implements JobDAO{
 			Date today = Calendar.getInstance().getTime();
 			sessionFactory.getCurrentSession().save(job);
 			job.setDate_posted(today);
+			job.setStatus('V');
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,11 +80,11 @@ public class JobDAOImpl implements JobDAO{
 	}
 	
 	@Transactional
-	public Job getJobDetails(Long jobID) {
+	public List<Job> getJobDetails(Long jobID) {
 		// TODO Auto-generated method stub
 		String hql = "from Job where jobID = '"+jobID+"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		return (Job) query.list();
+		return query.list();
 	}
 	
 	@Transactional
@@ -130,7 +131,7 @@ public class JobDAOImpl implements JobDAO{
 
 
 
-	public JobApplication getJobApplication(String userID,Long jobID) {
+	public JobApplication getJobApplication1(String userID,Long jobID) {
 		// TODO Auto-generated method stub
 		String hql = "from JobApplication where userID = '"+userID+"' and jobID = '"+jobID+"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
@@ -161,6 +162,15 @@ public class JobDAOImpl implements JobDAO{
 			return false;
 		}
 		return true;
+	}
+
+
+
+	public JobApplication getJobApplication(Long jobID) {
+		// TODO Auto-generated method stub
+		String hql = "from JobApplication where jobID = '"+jobID+"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return (JobApplication) query.list();
 	}
 
 

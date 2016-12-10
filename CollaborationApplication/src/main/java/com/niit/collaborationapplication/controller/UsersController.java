@@ -75,6 +75,120 @@ public class UsersController {
 		return new ResponseEntity<Users>(users,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/login/", method = RequestMethod.POST)
+	public ResponseEntity<Users> login(@RequestBody Users users, HttpSession session) {
+		logger.debug("Starting of the method login" );
+		
+		String user_id = users.getUser_id();
+		String password = users.getPassword();
+		 users = usersDAO.authenticate(user_id, password);
+		if (users == null) {
+			users = new Users();
+			users.setErrorCode("404"); // NLP NullPointerException
+			users.setErrorMessage("User does not exist with this id:" + user_id);
+		} else {
+			users.setIsOnline('Y');
+			users.setErrorCode("200"); // NLP NullPointerException
+			users.setErrorMessage("You have successfully logged");
+	
+			usersDAO.updateRow(users);
+
+			session.setAttribute("loggedInUserID", users.getUser_id());
+		}
+		logger.debug("Ending of the method login" );
+		return new ResponseEntity<Users>(users, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/logout/", method = RequestMethod.GET)
+	public ResponseEntity<Users> logout(HttpSession session) {
+		logger.debug("Starting of the method logout" );
+		
+		String loggedInUserID= (String) session.getAttribute("loggedInUserID");
+		
+		logger.debug("loggedInUserID : " + loggedInUserID);
+		
+		users =usersDAO.getRowById(loggedInUserID);
+		
+		logger.debug("user:"+ users);
+		users.setIsOnline('N');
+
+		session.invalidate();
+
+		if (usersDAO.updateRow(users)) {
+			users.setErrorCode("200");
+			users.setErrorMessage("You have logged out successfully");
+		} else {
+			users.setErrorCode("404");
+			users.setErrorMessage("You could not logged. please contact admin");
+		}
+		logger.debug("Ending of the method logout" );
+		return new ResponseEntity<Users>(users, HttpStatus.OK);
+
+	}
+
+	@RequestMapping(value = "/register/", method = RequestMethod.POST)
+	public ResponseEntity<Users> register(@RequestBody Users users) {
+		logger.debug("Starting of the method register" );
+		if (usersDAO.getRowById(users.getUser_id()) != null) {
+			users.setErrorCode("404");
+			users.setErrorMessage("With this id, the record is already exist.  Please choose another id");
+		} else {
+			users.setStatus('N');
+			if (usersDAO.save(users)) {
+				users.setErrorCode("200");
+				users.setErrorMessage("Your Registration is Successfull");
+
+			} else {
+				users.setErrorCode("405");
+				users.setErrorMessage("Unable process your registration. Please contact Admin");
+			}
+		}
+		logger.debug("Ending of the method register" );
+		return new ResponseEntity<Users>(users, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/accept/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Users> accept(@PathVariable("user_id") String user_id) {
+		logger.debug("Starting of the method register" );
+		
+		 	users = updateStatus(user_id, 'A', "");
+			return new  ResponseEntity<Users>(users,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/reject/{id}/{reason}", method = RequestMethod.GET)
+	public ResponseEntity<Users> reject(@PathVariable("user_id") String user_id ,@PathVariable("reason")  String reason) {
+		logger.debug("Starting of the method register" );
+		
+		users = updateStatus(user_id, 'R', reason);
+		return new  ResponseEntity<Users>(users,HttpStatus.OK);
+		}
+	
+	
+	private Users updateStatus(String user_id, char status, String reason)
+	{
+		logger.debug("Starting of the method updateStatus" );
+		
+		logger.debug("status: " + status);
+		users = usersDAO.getRowById(user_id);
+	  
+	  if(users==null)
+	  {
+		  users = new Users();
+		  users.setErrorCode("404");
+		  users.setErrorMessage("Could not update the status");
+	  }
+	  else
+	  {
+		  users.setStatus(status);
+		  users.setReason(reason);
+		  usersDAO.updateRow(users);
+	  }  
+	  logger.debug("Ending of the method updateStatus" );
+	return users;
+	  
+	}
+	
 	/*	http://localhost:8080/CollaborationApplication/users/	*/
 	@RequestMapping(value="/users/", method = RequestMethod.POST)
 	public ResponseEntity<Users> createUsers(@RequestBody Users users){

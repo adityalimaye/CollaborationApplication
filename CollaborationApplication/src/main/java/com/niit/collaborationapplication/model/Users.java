@@ -3,6 +3,7 @@ package com.niit.collaborationapplication.model;
 
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -55,12 +56,24 @@ public class Users extends BaseDomain{
 		@Column(name="user_role")
 		private String user_role;
 		
+		
+		@Column(name="is_online")
+		private Character  isOnline;
+		
+		
+		@Column(name="status")
+		private Character status;
+		
+		
+		@Column(name="reason")
+		private String reason;
+		
 		public Users() {
 			// TODO Auto-generated constructor stub
 		}
 		
 		public Users(String user_name, String user_id, String email_id, String password, String contact_num,
-				String user_address, String user_role) {
+				String user_address, String user_role, Character isOnline, Character status, String reason) {
 			super();
 			this.user_name = user_name;
 			this.user_id = user_id;
@@ -69,6 +82,35 @@ public class Users extends BaseDomain{
 			this.contact_num = contact_num;
 			this.user_address = user_address;
 			this.user_role = user_role;
+			this.isOnline = isOnline;
+			this.status = status;
+			this.reason = reason;
+		}
+
+
+
+		public Character getIsOnline() {
+			return isOnline;
+		}
+
+		public void setIsOnline(Character isOnline) {
+			this.isOnline = isOnline;
+		}
+
+		public Character getStatus() {
+			return status;
+		}
+
+		public void setStatus(Character status) {
+			this.status = status;
+		}
+
+		public String getReason() {
+			return reason;
+		}
+
+		public void setReason(String reason) {
+			this.reason = reason;
 		}
 
 		public String getUser_name() {
