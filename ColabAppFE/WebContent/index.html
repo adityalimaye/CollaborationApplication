@@ -20,6 +20,10 @@
 <script type="text/javascript" src="co_user/UserController.js"></script>
 <script type="text/javascript" src="co_user/UserService.js"></script>
 <script type="text/javascript" src="co_user/LoginController.js"></script>
+<script type="text/javascript" src="co_blog/BlogController.js"></script>
+<script type="text/javascript" src="co_blog/BlogService.js"></script>
+<script type="text/javascript" src="co_forum/BlogController.js"></script>
+<script type="text/javascript" src="co_forum/BlogService.js"></script>
 </head>
 
 <!-- define angular controller -->
@@ -32,9 +36,15 @@
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#">Friends Corner</a>
 				</div>
+				
+				<ul class="nav navbar-nav">
+      				<li><a href="#blog">Blog</a></li>
+      				<li><a href="#">Forum</a></li>
+      				<li><a href="#">Friends</a></li>
+    			</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
+					<li class="active"><a href="#home"><i class="fa fa-home"></i> Home</a></li>
 					<li><a href="#register"><i class="fa fa-shield"></i> SignUp!</a></li>
 					<li><a href="#login"><i class="fa fa-shield"></i>Login</a></li>
 				</ul>

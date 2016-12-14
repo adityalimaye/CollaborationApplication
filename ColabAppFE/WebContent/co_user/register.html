@@ -3,6 +3,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Registration Page</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular-route.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular-resource.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular-cookies.js"></script>
+<script src="app.js"></script>
+<!-- <script type="text/javascript" src="co_user/RegisterService.js"></script> -->
+<script type="text/javascript" src="co_user/UserController.js"></script>
+<script type="text/javascript" src="co_user/UserService.js"></script>
+<!-- <script type="text/javascript" src="co_user/LoginController.js"></script> -->
 </head>
 <link rel="stylesheet" href="resources/css/sty1.css">
 <body>
@@ -10,11 +20,11 @@
 <div align="center" class="generic-container" ng-controller="UserController as ctrl">
 			{{message}}
 
-		<div ng-hide='ctrl.user.errorMessage=="" '>
+		<!-- <div ng-hide='ctrl.user.errorMessage=="" '>
 			<div class="alert alert-danger fade in">
 			Error :{{ctrl.user.errorMessage}}
 			</div>
-		</div>
+		</div> -->
 
 
 		<div ng-show='ctrl.user.errorMessage=="" '>
@@ -118,16 +128,55 @@
 
 						<div class="row">
 							<div class="form-actions floatRight">
-								<button type="submit" value="Register" class="btn btn-primary btn-sm" id="registerUser">Register</button>
+								<!-- <input type="submit"  value="{{!ctrl.user.user_id ? 'Register' : 'Update'}}" class="btn btn-primary btn-sm"> -->
+								<button type="submit" value="{{!ctrl.user.user_id ? 'Register' : 'Update'}}" class="btn btn-primary btn-sm" id="registerUser">Register</button>
 								<button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm">Reset Form</button>
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
-
-		</div>
+			</div>
 	</div>
 	
 </body>
 </html>
+			
+			<!-- <div class="panel panel-default">
+			Default Panel Contents
+			<div class="panel-heading"><span class="lead">List Of Users</span></div>
+			<div class="tablecontainer">
+			<table class="table table-hover">
+    		<thead>
+      			<tr>
+        			<th>USER_ID</th>
+        			<th>USER_NAME</th>
+        			<th>PASSWORD</th>
+        			<th>EMAIL</th>
+        			<th>MOBILE</th>
+        			<th>ADDRESS</th>
+        			<th>USER_ROLE</th>
+        			<th>EDIT</th>
+        			<th>REMOVE</th>
+      			</tr>
+    		</thead>
+    		<tbody>
+      		<tr ng-repeat="user in ctrl.users">
+        		<td><span ng-bind="user.user_id"></span></td>
+        		<td><span ng-bind="user.user_name"></span></td>
+        		<td><span ng-bind="user.password"></span></td>
+        		<td><span ng-bind="user.email_id"></span></td>
+        		<td><span ng-bind="user.contact_num"></span></td>
+        		<td><span ng-bind="user.user_address"></span></td>
+        		<td><span ng-bind="user.user_role"></span></td>
+        		<td>
+        		<button type="button" ng-click="ctrl.edit(user.user_id)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(user.user_id)" class="btn btn-danger custom-width">Remove</button>
+        		</td>
+        		<td>{{user.user_role}}</td>
+        	</tr>
+      		
+    		</tbody>
+  			</table>
+  			</div> 
+			</div> -->
+		

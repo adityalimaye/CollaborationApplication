@@ -1,4 +1,5 @@
 com\niit\collaborationapplication\model\BlogComment.class
+com\niit\collaborationapplication\dao\ForumDAO.class
 com\niit\collaborationapplication\controller\UsersController.class
 com\niit\collaborationapplication\model\Blog.class
 com\niit\collaborationapplication\dao\BlogCommentDAOImpl.class
@@ -13,7 +14,11 @@ com\niit\collaborationapplication\controller\JobController.class
 com\niit\collaborationapplication\controller\BlogController.class
 com\niit\collaborationapplication\dao\BlogDAOImpl.class
 com\niit\collaborationapplication\model\Users.class
+com\niit\collaborationapplication\controller\ForumController.class
+com\niit\collaborationapplication\dao\ForumDAOImpl.class
 com\niit\collaborationapplication\dao\JobDAOImpl.class
 com\niit\collaborationapplication\dao\UsersDAOImpl.class
 com\niit\collaborationapplication\App.class
 com\niit\collaborationapplication\dao\UsersDAO.class
+com\niit\collaborationapplication\model\Forum.class
+com\niit\collaborationapplication\model\ForumComment.class

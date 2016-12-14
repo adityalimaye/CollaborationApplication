@@ -11,7 +11,7 @@ public interface UsersDAO{
 	public Users getRowById(String user_id);
 	public boolean save(Users users);
 	public boolean updateRow(Users users);
-	public boolean deleteRow(String user_id);
+	public boolean deleteUser(String user_id);
 	public Users authenticate(String user_id,String password);
 	
 }

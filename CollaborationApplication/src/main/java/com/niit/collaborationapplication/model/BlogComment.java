@@ -18,11 +18,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity 
 @Table(name="blogcomment")
 @Component
-public class BlogComment extends BaseDomain implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5223039007940368120L;
+public class BlogComment extends BaseDomain{
+	
 	@Id
 	private String blogCommentID;
 	private String user_id;
@@ -77,7 +74,7 @@ public class BlogComment extends BaseDomain implements Serializable{
 	
 	public BlogComment() {
 		// TODO Auto-generated constructor stub
-		this.blogCommentID = "BLGCMT" + UUID.randomUUID().toString().substring(30).toUpperCase();
+		//this.blogCommentID = "BLGCMT" + UUID.randomUUID().toString().substring(30).toUpperCase();
 	}
 
 	public BlogComment(String user_id, String blogCommentContent, Timestamp commentedAt) {
@@ -87,8 +84,8 @@ public class BlogComment extends BaseDomain implements Serializable{
 		this.commentedAt = commentedAt;
 	}
 	
-	@Override
+	/*@Override
 	public String toString(){
 		return "BlogComment [blogCommentID=" + blogCommentID + ", userID=" + user_id + ", blogCommentContent=" + blogCommentContent + ", commentedAt=" + commentedAt + ",blog=" + blog + "]";
-	}
+	}*/
 }

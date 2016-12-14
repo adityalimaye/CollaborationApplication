@@ -19,12 +19,16 @@ import com.niit.collaborationapplication.dao.BlogCommentDAO;
 import com.niit.collaborationapplication.dao.BlogCommentDAOImpl;
 import com.niit.collaborationapplication.dao.BlogDAO;
 import com.niit.collaborationapplication.dao.BlogDAOImpl;
+import com.niit.collaborationapplication.dao.ForumDAO;
+import com.niit.collaborationapplication.dao.ForumDAOImpl;
 import com.niit.collaborationapplication.dao.JobDAO;
 import com.niit.collaborationapplication.dao.JobDAOImpl;
 import com.niit.collaborationapplication.dao.UsersDAO;
 import com.niit.collaborationapplication.dao.UsersDAOImpl;
 import com.niit.collaborationapplication.model.Blog;
 import com.niit.collaborationapplication.model.BlogComment;
+import com.niit.collaborationapplication.model.Forum;
+import com.niit.collaborationapplication.model.ForumComment;
 import com.niit.collaborationapplication.model.Job;
 import com.niit.collaborationapplication.model.JobApplication;
 import com.niit.collaborationapplication.model.Users;
@@ -82,6 +86,8 @@ public class ApplicationContextConfiguration {
 		sessionBuilder.addAnnotatedClass(JobApplication.class);
 		sessionBuilder.addAnnotatedClass(Blog.class);
 		sessionBuilder.addAnnotatedClass(BlogComment.class);
+		sessionBuilder.addAnnotatedClass(Forum.class);
+		sessionBuilder.addAnnotatedClass(ForumComment.class);
 		return sessionBuilder.buildSessionFactory();
 	}
 	
@@ -114,5 +120,11 @@ public class ApplicationContextConfiguration {
 	@Bean(name="blogCommentDAO")
 	public BlogCommentDAO getBlogCommentDAO(SessionFactory sessionFactory){
 		return new BlogCommentDAOImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name="forumDAO")
+	public ForumDAO getForumDAO(SessionFactory sessionFactory){
+		return new ForumDAOImpl(sessionFactory);
 	}
 }

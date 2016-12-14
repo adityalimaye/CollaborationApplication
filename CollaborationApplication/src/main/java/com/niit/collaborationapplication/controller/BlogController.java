@@ -2,6 +2,7 @@ package com.niit.collaborationapplication.controller;
 
 import java.sql.Timestamp;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import com.niit.collaborationapplication.dao.BlogDAO;
 import com.niit.collaborationapplication.model.Blog;
 import com.niit.collaborationapplication.model.BlogComment;
 
+
 @RestController
 public class BlogController {
 	
@@ -40,7 +42,7 @@ public class BlogController {
 	@Autowired
 	BlogCommentDAO blogCommentDAO;
 	
-	@RequestMapping(value="/getBlogByCreatedAt",method=RequestMethod.GET)
+	/*@RequestMapping(value="/getBlogByCreatedAt",method=RequestMethod.GET)
 	public ResponseEntity<List<Blog>> listBlogsByCreatedAt(){
 		logger.debug("->->->->Calling method listAllBlogs");
 		List<Blog> listOfBlog1 = blogDAO.listBlogByCreatedAt('A');
@@ -48,6 +50,16 @@ public class BlogController {
 			return new ResponseEntity<List<Blog>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Blog>>(HttpStatus.OK);
+	}*/
+	
+	@RequestMapping(value="/listAllBlogs",method=RequestMethod.GET)
+	public ResponseEntity<List<Blog>> listAllBlogs(){
+		logger.debug("->->->->Calling method listAllBlogs");
+		List<Blog> bloglist = blogDAO.listAllBlogs();
+		if(bloglist.isEmpty()){
+			return new ResponseEntity<List<Blog>>(bloglist,HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Blog>>(bloglist,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/getBlogByID/{blogID}",method=RequestMethod.GET)
@@ -61,13 +73,13 @@ public class BlogController {
 		return new ResponseEntity<Blog>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/postBlog",method=RequestMethod.POST)
-	public ResponseEntity<Blog> postBlog(@RequestBody Blog blog,UriComponentsBuilder ucBuilder){
+	@RequestMapping(value="/createBlog/",method=RequestMethod.POST)
+	public ResponseEntity<Blog> createBlog(@RequestBody Blog blog,UriComponentsBuilder ucBuilder){
 		logger.debug("->->->->Calling method postBlog");
 		
 		System.out.println(blog);
 		
-		blog.setBlogID("BLG");
+		//blog.setBlogID("BLG");
 		Date date = new Date();
 		long time = date.getTime();
 		Timestamp timestamp = new Timestamp(time);
@@ -75,14 +87,14 @@ public class BlogController {
 		blog.setModifiedAt(timestamp);
 		blog.setStatus('P');
 		
-		blogDAO.postBlog(blog);
+		blogDAO.createBlog(blog);
 		HttpHeaders httpHeaders = new HttpHeaders();
 		
 		httpHeaders.setLocation(ucBuilder.path("/blog/{blogID}").buildAndExpand(blog.getBlogID()).toUri());
 		return new ResponseEntity<Blog>(httpHeaders,HttpStatus.CREATED);  
 	}
 	
-	@RequestMapping(value="/updateBlog",method=RequestMethod.PUT)
+	@RequestMapping(value="/updateBlog/{blogID}",method=RequestMethod.PUT)
 	public ResponseEntity<Blog> updateBlog(@PathVariable("blogID") String blogID,@RequestBody Blog blog){
 		this.blog = blogDAO.getBlogByID(blogID);
 		if(this.blog==null){
@@ -94,11 +106,11 @@ public class BlogController {
 		long time = date.getTime();
 		Timestamp timestamp = new Timestamp(time);
 		this.blog.setModifiedAt(timestamp);
-		blogDAO.postBlog(blog);
+		blogDAO.updateBlog(blog);
 		return new ResponseEntity<Blog>(this.blog,HttpStatus.OK); 
 	}
 	
-	@RequestMapping(value="/deleteBlog",method=RequestMethod.DELETE)
+	@RequestMapping(value="/deleteBlog/{blogID}",method=RequestMethod.DELETE)
 	public ResponseEntity<Blog> deleteBlog(@PathVariable("blogID") String blogID){
 		this.blog = blogDAO.getBlogByID(blogID);
 		if(this.blog==null){

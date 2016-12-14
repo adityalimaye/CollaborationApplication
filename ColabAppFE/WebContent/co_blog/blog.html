@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="myCoApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Blog Page</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular-route.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular-resource.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular-cookies.js"></script>
+<script src="app.js"></script>
+
+<script type="text/javascript" src="co_blog/BlogController.js"></script>
+<script type="text/javascript" src="co_blog/BlogService.js"></script>
+</head>
+<link rel="stylesheet" href="resources/css/sty1.css">
+<body>
+<!-- <div class="jumbotron text-center">
+<p>{{message}}</p> -->
+	<h1>Blog Page</h1>
+	<div align="center" class="generic-container" ng-controller="BlogController as ctrl">
+
+		<!-- <div ng-hide='ctrl.user.errorMessage=="" '>
+			<div class="alert alert-danger fade in">
+			Error :{{ctrl.user.errorMessage}}
+			</div>
+		</div> -->
+
+
+		<div ng-show='ctrl.blog.errorMessage=="" '>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="lead">Create Blog </span>
+				</div>
+				<div class="formcontainer">
+					<form ng-submit="ctrl.submit()" name="myForm1" class="form-horizontal">
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="blogID">BLOG ID:</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="ctrl.blog.blogID" id="blogID"
+										class="blogID form-control input-sm"
+										placeholder="Enter BlogID" required ng-minlength="3" />
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="blogName">BLOG NAME</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="ctrl.blog.blogName" id="blogName"
+										class="blogName form-control input-sm"
+										placeholder="Enter your name" required ng-minlength="3" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="user_id">USER_ID:</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="ctrl.blog.user_id"
+										id="user_id" class="user_id form-control input-sm"
+										placeholder="Enter user_id" required ng-minlength="3" />
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="blogDescription">BLOG_DESCRIPTION</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="ctrl.blog.blogDescription" id="blogDescription"
+										class="blogDescription form-control input-sm"
+										placeholder="Enter blogDescription" required />
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-actions floatRight">
+								<!-- <input type="submit"  value="{{!ctrl.blog.blogID ? 'Register' : 'Update'}}" class="btn btn-primary btn-sm"> -->
+								<button type="submit" value="{{!ctrl.blog.blogID ? 'Submit' : 'Update'}}" class="btn btn-primary btn-sm" id="registerUser">Submit</button>
+								<button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm">Reset Form</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			</div>
+	</div>	
+</body>
+</html>

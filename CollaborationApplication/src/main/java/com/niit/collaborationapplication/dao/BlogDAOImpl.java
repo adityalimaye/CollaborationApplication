@@ -4,6 +4,7 @@ import java.util.List;
 
 
 
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -25,38 +26,11 @@ public class BlogDAOImpl implements BlogDAO{
 	public BlogDAOImpl(SessionFactory sessionFactory){
 		this.sessionFactory = sessionFactory;
 	}
-
-	@Transactional
-	public boolean postBlog(Blog blog) {
-		// TODO Auto-generated method stub
-		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(blog);
-			return true;
-		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	@Transactional
-	public boolean deleteBlog(String blogID) {
-		// TODO Auto-generated method stub
-		try {
-			sessionFactory.getCurrentSession().delete(blogID);
-			return true;
-		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-		
-	}
-
+	
 	@Transactional
 	public Blog getBlogByID(String blogID) {
 		// TODO Auto-generated method stub
-		String hql= "from blog where blogID='"+blogID+"'";
+		String hql= "from Blog where blogID='"+blogID+"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		System.out.println("Checking for list of blogs");
 		@SuppressWarnings("unchecked")
@@ -70,7 +44,7 @@ public class BlogDAOImpl implements BlogDAO{
 	@Transactional
 	public List<Blog> listAllBlogs() {
 		// TODO Auto-generated method stub
-		String hql= "from blog";
+		String hql= "from Blog";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		System.out.println("Checking for list of blogs");
 		@SuppressWarnings("unchecked")
@@ -79,6 +53,51 @@ public class BlogDAOImpl implements BlogDAO{
 	}
 
 	@Transactional
+	public boolean createBlog(Blog blog) {
+		// TODO Auto-generated method stub
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(blog);
+			
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	@Transactional
+	public boolean updateBlog(Blog blog) {
+		// TODO Auto-generated method stub
+		try {
+			sessionFactory.getCurrentSession().update(blog);
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	@Transactional
+	public boolean deleteBlog(String blogID) {
+		// TODO Auto-generated method stub
+		try {
+			sessionFactory.getCurrentSession().delete(blogID);
+			
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	
+
+	
+
+	/*@Transactional
 	@SuppressWarnings("unchecked")
 	public List<Blog> listBlogByCreatedAt(char status) {
 		// TODO Auto-generated method stub
@@ -100,5 +119,5 @@ public class BlogDAOImpl implements BlogDAO{
 		@SuppressWarnings("unchecked")
 		List<Blog> blogList4 = query.list();
 		return blogList4;
-	}
+	}*/
 }

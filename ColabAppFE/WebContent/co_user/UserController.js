@@ -49,7 +49,8 @@ app
 												});
 							};
 
-							//self.listAllUsers();
+							self.listAllUsers();
+							
 							self.createUser = function(user) {
 								console.log("createUser...")
 								UserService
@@ -61,6 +62,25 @@ app
 															.error('Error while creating User.');
 												});
 							};
+							
+							self.edit = function(user_id){
+								console.log("user_id to be edited",user_id);
+								for (var i=0;i < self.users.length;i++){
+									if(self.users[i].user_id === user_id){
+										self.user = angular.copy(self.users[i]);
+										break;
+									}
+								}
+								
+							};
+							
+							self.remove = function remove(user_id){
+						        console.log('user_id to be deleted', user_id);
+						        if(self.user.user_id === user_id) {//clean form if the user to be deleted is shown there.
+						            reset();
+						        }
+						        self.deleteUser(user_id);
+						    };
 
 							self.getUserById = function(user_id) {
 								console.log("getUserById...")

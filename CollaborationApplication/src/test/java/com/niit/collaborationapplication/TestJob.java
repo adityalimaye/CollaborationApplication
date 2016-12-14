@@ -2,6 +2,7 @@
 
 import static org.junit.Assert.*;
 
+import javax.servlet.http.HttpSession;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,15 +39,21 @@ public class TestJob {
 	@Test 
 		public void postJob(){
 		System.out.println("Trying to post a job");
-		job.setJob_title("Web developer");
-		job.setJob_description("Web development is a broad term and covers everything to do with building websites and all the infrastructure that sits behind them. The job is still viewed as the trendy side of IT years after it first emerged.");
-		job.setSalary("5.1 to 5.6 LPA");
-		job.setQualification("BE/BTECH/Any Graduate/Web Designing Course Certified(60% Mandatory in Graduation)");
-		job.setNo_of_applications(07);
-		job.setStatus('V');
-		//jobDAO.postJob(job);
+		job.setJob_title("Production Manager");
+		job.setJob_description("Production managers are responsible for the technical management");
+		job.setSalary("3.8 to 4.5 LPA");
+		job.setQualification("BE/BCS/MCS/MCA");
+		job.setNo_of_applications(25);
+		jobDAO.postJob(job);
 		System.out.println("Job posted successfully");
 		assertEquals("postJobTestCase", jobDAO.postJob(job),true);
+	}
+	
+	@Test 
+	public void applyForJob(String jobID,HttpSession session){
+		System.out.println("Trying to apply for a job");
+		
+		
 	}
 }
 

@@ -20,16 +20,28 @@
                 controller  : 'mainController'
             })
             
-            // route for the about page
+            // route for the sign-up page
             .when('/register', {
                 templateUrl : 'co_user/register.html',
                 controller  : 'UserController'
             })
 
-            // route for the contact page
+            // route for the login page
             .when('/login', {
                 templateUrl : 'co_user/login.html',
                 controller  : 'LoginController'
+            })
+            
+            // route for the login page
+            .when('/blog', {
+                templateUrl : 'co_blog/blog.html',
+                controller  : 'BlogController'
+            })
+            
+            // route for the login page
+            .when('/forum', {
+                templateUrl : 'co_forum/forum.html',
+                controller  : 'ForumController'
             });
     }]);
 
@@ -38,6 +50,8 @@
         // create a message to display in our view
         $scope.message = 'Everyone come and see how good I look!';
     });
+    
+ 
     
     /*app.run( function ($rootScope, $location,$cookieStore, $http) {
 

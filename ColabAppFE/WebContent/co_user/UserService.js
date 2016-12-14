@@ -67,7 +67,7 @@ app
 								},
 
 								updateUser : function(user, user_id) {
-									console.log("calling listAllUsers ")
+									console.log("calling updateUsers ")
 									return $http
 											.put(BASE_URL + '/users/', user)
 											/*	http://localhost:8080/CollaborationApplication/users/rah123	*/
@@ -93,20 +93,15 @@ app
 								},
 
 								deleteUser : function(user_id) {
-									return $http
-											.deleteUser(
-													BASE_URL + '/users/'
-															+ user_id)
+									return $http.deleteUser(BASE_URL + '/users/'+ user_id)
 											/*	http://localhost:8080/CollaborationApplication/users/sam123	*/
 											.then(
 													function(response) {
 														return response.data;
 													},
 													function(errResponse) {
-														console
-																.error('Error while deleting the user!');
-														return q
-																.reject(errResponse);
+														console.error('Error while deleting the user!');
+														return q.reject(errResponse);
 													});
 								},
 

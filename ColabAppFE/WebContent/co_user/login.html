@@ -6,14 +6,14 @@
 </head>
 <link rel="stylesheet" href="resources/css/sty1.css">
 <body>
-
+	
 	<div class="generic-container" ng-controller="UserController as ctrl">
-
+	
 		<div ng-show='ctrl.user.errorMessage'>
 			<div class="alert alert-danger fade in">
 				{{ctrl.user.errorMessage}}</div>
 		</div>
-
+		
 		<div ng-hide="ctrl.userLoggedIn">
 			<div class="formcontainer">
 				<form ng-submit="ctrl.login()" name="form" role="form">
@@ -42,9 +42,7 @@
 
 
 					<div class="form-actions">
-						<button type="submit"
-							ng-disabled="form.$invalid || ctrl.dataLoading"
-							class="btn btn-primary">Login</button>
+						<button type="submit" ng-disabled="form.$invalid || ctrl.dataLoading" class="btn btn-primary">Login</button>
 						<a href="#/register" class="btn btn-link">Register</a>
 					</div>
 

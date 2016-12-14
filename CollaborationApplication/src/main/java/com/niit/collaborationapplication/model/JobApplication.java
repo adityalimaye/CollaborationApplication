@@ -4,8 +4,10 @@ package com.niit.collaborationapplication.model;
 
 import java.util.Date;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -15,14 +17,16 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="job_applied")
 @Component
-public class JobApplication {
+public class JobApplication extends BaseDomain{
 	
 	@Id
+	@GeneratedValue
+	@NotNull
 	private String j_application_id;
 	
 	@NotNull
 	@Column(name="user_id")
-	private String userID;
+	private String user_id;
 	
 	@NotNull
 	@Column(name="jobID")
@@ -43,19 +47,19 @@ public class JobApplication {
 		this.j_application_id = j_application_id;
 	}
 
-	public String getUserID() {
-		return userID;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUserID(String userID) {
-		this.userID = userID;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
-	public long getJobID() {
+	public Long getJobID() {
 		return jobID;
 	}
 
-	public void setJobID(long jobID) {
+	public void setJobID(Long jobID) {
 		this.jobID = jobID;
 	}
 

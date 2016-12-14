@@ -10,16 +10,14 @@ public interface JobDAO {
 	public boolean updateJob(Job job);
 	public List<Job> getAllVacantJobs();
 	public List<Job> getAllJobs();
-	public List<Job> getJobDetails(Long jobID);
 	
-	public boolean save(JobApplication jobApplication);
-	public boolean update(JobApplication jobApplication);
 	public boolean applyForJob(JobApplication jobApplication);
-	public boolean updateJobApplication(JobApplication jobApplication);
-	public JobApplication get(String userID,Long jobID);
-	public JobApplication getMyAppliedJobs(String userID);
-	public JobApplication getJobApplication1(String userID, Long jobID);
-	public JobApplication getJobApplication(Long jobID);
+	/*public boolean updateJobApplication(JobApplication jobApplication);*/
+	public List<Job> getMyAppliedJobs(String user_id);
+	public JobApplication getJobApplication(String user_id,long jobID);
 	
+	public boolean selectUser(String user_id,long jobID);
+	public boolean callForInterview(String user_id,long jobID);
+	public boolean rejectJobApplication(String user_id,long jobID);
 
 }

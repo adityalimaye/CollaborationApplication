@@ -57,7 +57,7 @@ public class UsersController {
 		logger.debug("->->->-> Calling method listAllUsers");
 		List<Users> users = usersDAO.getList();
 		if(users.isEmpty()){
-			return new ResponseEntity<List<Users>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<List<Users>>(users,HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Users>>(users,HttpStatus.OK);
 	}
@@ -232,7 +232,7 @@ public class UsersController {
 			users.setErrorMessage("User does not exist with this id:" +users.getUser_id());
 			return new ResponseEntity<Users>(users,HttpStatus.NOT_FOUND);
 		}
-		usersDAO.deleteRow(user_id);
+		usersDAO.deleteUser(user_id);
 		logger.debug("Users deleted successfully");
 		return new ResponseEntity<Users>(HttpStatus.OK);
 	}

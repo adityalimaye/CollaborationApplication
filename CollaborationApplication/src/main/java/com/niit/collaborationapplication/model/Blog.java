@@ -1,10 +1,11 @@
 package com.niit.collaborationapplication.model;
 
-import java.io.Serializable;
+
 import java.sql.Timestamp;
+
+
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,12 +19,8 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="blog")
 @Component
-public class Blog extends BaseDomain implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5590790739273445614L;
+public class Blog extends BaseDomain{
+	
 	@Id
 	private String blogID;
 	private String blogName;
@@ -88,7 +85,7 @@ public class Blog extends BaseDomain implements Serializable{
 	}
 	public Blog() {
 		// TODO Auto-generated constructor stub\
-		this.blogID = "BLG" + UUID.randomUUID().toString().substring(30).toUpperCase();
+		//this.blogID = "BLG" + UUID.randomUUID().toString().substring(30).toUpperCase();
 	}
 	public Blog(String blogName, String user_id, String blogDescription, Character status,
 			Timestamp createdAt, Timestamp modifiedAt) {
@@ -101,8 +98,8 @@ public class Blog extends BaseDomain implements Serializable{
 		this.modifiedAt = modifiedAt;
 	}
 	
-	@Override
+	/*@Override
 	public String toString() {
 		return "Blog [blogID=" + blogID + ", blogName=" + blogName + ", userID=" + user_id + ", blogDescription=" + blogDescription + ", status=" + status + ",createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + ", blogComments=" + blogComments + "]";
-	}
+	}*/
 }

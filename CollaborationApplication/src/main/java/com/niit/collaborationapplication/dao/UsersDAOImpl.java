@@ -38,12 +38,12 @@ public class UsersDAOImpl implements UsersDAO{
 		/*Session session = sessionFactory.openSession();*/ 
 		String hql = "from Users";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		System.out.println("Checking for list of users");
+		
 		@SuppressWarnings("unchecked")
 		List<Users> usersList = query.list();
-		//List userDetailsMallList = query.list();
-		/*session.close();*/
+		System.out.println("Checking for list of users");
 		return usersList;
+		
 	}
 
 	
@@ -91,7 +91,7 @@ public class UsersDAOImpl implements UsersDAO{
 	}
 
 	@Transactional
-	public boolean deleteRow(String user_id) {
+	public boolean deleteUser(String user_id) {
 		// TODO Auto-generated method stub
 		try {
 			sessionFactory.getCurrentSession().delete(user_id);
